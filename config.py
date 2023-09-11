@@ -29,6 +29,9 @@ OWNER_ID = list(map(int, getenv("OWNER_ID").split()))
 
 
 STRING2 = getenv("STRING2", None)
+STRING3 = getenv("STRING3", None)
+STRING4 = getenv("STRING4", None)
+STRING5 = getenv("STRING5", None)
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "900"))
 
