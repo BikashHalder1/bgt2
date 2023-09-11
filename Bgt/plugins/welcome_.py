@@ -181,7 +181,7 @@ async def member_has_joined(c: app, member: ChatMemberUpdated):
 ᴍᴇɴᴛɪᴏɴ : {user.mention}
 ᴊᴏɪɴᴇᴅ ᴀᴛ: {member.date} </b>
 
-ᴊᴏɪɴ YOUTUBE.COM/@BikashGadgetsTech""",
+youtube.com/@Bikashgadgetstech""",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(IMGX),
         )
@@ -199,7 +199,7 @@ async def member_has_joined(c: app, member: ChatMemberUpdated):
 ᴍᴇɴᴛɪᴏɴ : {user.mention}
 ᴊᴏɪɴᴇᴅ ᴀᴛ: {member.date} </b>
 
-ᴊᴏɪɴ YOUTUBE.COM/@BikashGadgetsTech""",
+youtube.com/@Bikashgadgetstech""",
         parse_mode=ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(IMGX),
     )
