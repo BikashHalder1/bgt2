@@ -55,7 +55,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         
-        self.userbo3 = Client(
+        self.userbot3 = Client(
             name="Userbot3",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
@@ -88,7 +88,7 @@ class Call(PyTgCalls):
             cache_duration=100,
         )
         
-
+        
     async def pause_stream(self, chat_id: int):
         assistant = await group_assistant(self, chat_id)
         await assistant.pause_stream(chat_id)
