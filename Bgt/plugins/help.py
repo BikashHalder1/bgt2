@@ -1,99 +1,4 @@
-from math import ceil
-from pyrogram.types import InlineKeyboardButton
-from config import LOAD, NO_LOAD
-
-
-class EqInlineKeyboardButton(InlineKeyboardButton):
-    def __eq__(self, other):
-        return self.text == other.text
-
-    def __lt__(self, other):
-        return self.text < other.text
-
-    def __gt__(self, other):
-        return self.text > other.text
-
-
-def page_load(page_n, module_dict, prefix, chat=None):
-    if not chat:
-        modules = sorted(
-            [
-                EqInlineKeyboardButton(
-                    x.__MODULE__,
-                    callback_data="{}_module({})".format(
-                        prefix, x.__MODULE__.lower()
-                    ),
-                )
-                for x in module_dict.values()
-            ]
-        )
-    else:
-        modules = sorted(
-            [
-                EqInlineKeyboardButton(
-                    x.__MODULE__,
-                    callback_data="{}_module({},{})".format(
-                        prefix, chat, x.__MODULE__.lower()
-                    ),
-                )
-                for x in module_dict.values()
-            ]
-        )
-
-    pairs = list(zip(modules[::3], modules[1::3], modules[2::3]))
-    i = 0
-    
-    for m in pairs:
-        for _ in m:
-            i += 1
-    if len(modules) - i == 1:
-        pairs.append((modules[-1],))
-    elif len(modules) - i == 2:
-        pairs.append(
-            (
-                modules[-2],
-                modules[-1],
-            )
-        )
-
-    COLUMN_SIZE = 5
-
-    max_num_pages = ceil(len(pairs) / COLUMN_SIZE)
-    modulo_page = page_n % max_num_pages
-
-    if len(pairs) > COLUMN_SIZE:
-        pairs = pairs[
-            modulo_page * COLUMN_SIZE : COLUMN_SIZE * (modulo_page + 1)
-        ] + [
-            (
-                EqInlineKeyboardButton(
-                    "◁",
-                    callback_data="{}_prev({})".format(prefix, modulo_page),
-                ),
-                EqInlineKeyboardButton(
-                    "Hᴏᴍᴇ",
-                    callback_data="semxx",
-                ),
-                EqInlineKeyboardButton(
-                    "▷",
-                    callback_data="{}_next({})".format(prefix, modulo_page),
-                ),
-            ),
-        ]
-    else:
-        pairs = pairs[
-            modulo_page * COLUMN_SIZE : COLUMN_SIZE * (modulo_page + 1)
-        ] + [
-           [
-               InlineKeyboardButton(text="Hᴏᴍᴇ", callback_data="semxx")
-           ]
-        ]
-
-    return pairs
-
-
-def is_module_loaded(name):
-    return (not LOAD or name in LOAD) and name not in NO_LOAD
+import re
 from sys import version as pyver
 from pyrogram import filters, __version__ as pyrover
 from config import BANNED_USERS, SUPPORT_HEHE, EXTRA_IMG
@@ -197,10 +102,6 @@ async def back(_, query: CallbackQuery):
         text=f"""ʜᴇʏ {query.from_user.mention}
 ᴛʜɪs ɪs {app.mention} ᴀ ᴛᴇʟᴇɢʀᴀᴍ ꜱᴛʀᴇᴀᴍɪɴɢ ʙᴏᴛ ᴡɪᴛʜ ꜱᴏᴍᴇ ᴀᴡᴇꜱᴏᴍᴇ ꜰᴇᴀᴛᴜʀᴇꜱ. ꜱᴜᴘᴘᴏʀᴛɪɴɢ ᴘʟᴀᴛꜰᴏʀᴍꜱ ʟɪᴋᴇ **ʏᴏᴜᴛᴜʙᴇ**, **ꜱᴘᴏᴛɪꜰʏ** ᴇᴛᴄ.
 
-ʙɢᴛ ᴠᴇʀsɪᴏɴ ⊱ `{__Version__}`
-ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ ⊱ `{pyver.split()[0]}`
-ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ ⊱ `{pyrover}`
-
 **ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ɪɴғᴏ ᴀʙᴏᴜᴛ ᴍʏ ᴄᴏᴍᴍᴀɴᴅs.**""",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
@@ -214,3 +115,4 @@ async def help_cmd(_, m: Message):
         pass
     key = private_help_panel()
     await m.reply_text("ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ғᴏʀ ʜᴇʟᴘ !", reply_markup=InlineKeyboardMarkup(key))
+
