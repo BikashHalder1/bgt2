@@ -1,0 +1,96 @@
+cgreen='\033[0;32m'
+cyellow='\033[0;33m'
+cpurple='\033[0;35m'
+
+update() {sudo apt-get update && sudo apt-get upgrade -y}
+
+pprint () {printf """$cpurple $1"""}
+
+packages() {sudo apt-get install python3-pip ffmpeg -y}
+
+node() {curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get install nodejs -y && npm i -g npm}
+
+repo() {git clone https://github.com/ExoticHero/Sirion && cd Sirion}
+
+installation() {pip3 install -U -r requirements.txt}
+
+clear
+pprint"ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ sɪʀɪᴏɴ sᴇᴛᴜᴘ ɪɴsᴛᴀʟʟᴇʀ ! \n\n"
+sleep 5
+
+pprint "sᴛᴀʀᴛɪɴɢ ᴜᴘᴅᴀᴛᴇ ᴀɴᴅ ɪɴsᴛᴀʟʟɪɴɢ ᴘʟᴇᴀsᴇ ᴅᴏɴᴛ ᴘʀᴇss ᴀɴʏ ᴋᴇʏ ! \n"
+update &> /dev/null
+pprint "ᴜᴘᴅᴀᴛᴇ ʜᴀs ʙᴇᴇɴ ᴄᴏᴍᴘʟᴇᴛᴇᴅ !\n"
+
+pprint "ɴᴏᴡ ɪɴsᴛᴀʟʟɪɴɢ ɴᴇᴄᴇssᴏʀʏ ᴘᴀᴄᴋᴀɢᴇs ! \n\n"
+packages &> /dev/null
+pprint "ᴘᴀᴄᴋᴀɢᴇs ɪɴsᴛᴀʟʟᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ !\n"
+
+pprint "ɪɴsᴛᴀʟʟɪɴɢ ɴᴏᴅᴇ ᴊs ᴀɴᴅ ɴᴘᴍ ! \n"
+node &> nodelog.txt
+pprint "ɴᴏᴅᴇ ᴊs ɪɴsᴛᴀʟʟᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ! \n\n"
+ 
+pprint "ɴᴏᴡ ɪɴsᴛᴀʟʟɪɴɢ ᴘʏᴘɪ ᴘᴀᴄᴋᴀɢᴇs !\n"
+installation > pypilog.txt
+pprint "sɪʀɪᴏɴ ɪɴsᴛᴀʟʟᴀᴛɪᴏɴ ᴄᴏᴍᴘʟᴇᴛᴇᴅ !\n\n"
+
+sleep 5
+clear
+
+pprint "ɪғ ʏᴏᴜ sᴀᴡ ᴀɴʏ ᴇʀʀᴏʀs ᴏɴ ᴛʜᴇ ʟᴀsᴛ ᴘᴀɢᴇ !\n"
+pprint "ᴘʟᴇᴀsᴇ ᴛʀʏ ʀᴇ ᴇxᴇᴄᴜᴛɪɴɢ ᴛʜᴇ sᴄʀɪᴘᴛ !\n\n"
+sleep 5
+
+pprint "ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴠᴀʟᴜᴇs ʙᴇʟᴏᴡ : \n\n\n"
+pprint "ᴀᴘɪ ɪᴅ : "
+read api_id
+sleep 1
+
+pprint "\nᴀᴘɪ ʜᴀsʜ : "
+read api_hash
+sleep 1
+
+pprint "\nʙᴏᴛ ᴛᴏᴋᴇɴ : "
+read bot_token
+sleep 1
+
+pprint "\nᴍᴏɴɢᴏ ᴅʙ ᴜʀʟ : "
+read mongo_db
+sleep 1
+
+pprint "\nʟᴏɢ ɢʀᴏᴜᴘ ɪᴅ : "
+read logger
+sleep 1
+
+pprint "\nᴘʏʀᴏɢʀᴀᴍ ᴠ𝟸 sᴛʀɪɴɢ sᴇssɪᴏɴ : "
+read string_session
+sleep 1
+
+pprint "\nᴏᴡɴᴇʀ ɪᴅ : "
+read ownid
+sleep 1
+
+pprint "$cgreen \n\nᴘʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ᴠᴀʀs ᴡᴀɪᴛ ᴀ ᴡʜɪʟᴇ !"
+sleep 5
+
+if [-f local.env]; then
+sudo rm local.env
+fi
+
+echo """
+API_ID = $api_id
+API_HASH = $api_hash
+BOT_TOKEN = $bot_token
+MONGO_DB = $mongo_db
+LOG_GROUP_ID = $logger
+STRING1 = $string_session
+OWNER_ID = $ownid
+""" > local.env
+ 
+clear
+pprint "\n\n\nʏᴏᴜʀ ᴠᴀʀs ʜᴀᴠᴇ ʙᴇᴇɴ sᴀᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ! "
+pprint "\nɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ᴘʀᴏᴄᴇᴇᴅ ʙʏ sᴛᴀʀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ ᴡɪᴛʜ ʙᴀsʜ sᴛᴀʀᴛ !"
+
+
+
+

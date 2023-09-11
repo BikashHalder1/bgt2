@@ -1,0 +1,94 @@
+{
+    "name": "Bgt Music Bot",
+    "description": "A Telegram Management And Music Player Bot Written In Python Using Pyrogram",
+    "keywords": ["python3", "telegram", "bot", "MusicBot", "telegram-bot", "pyrogram", "Bgt"],
+    "env": {
+      "API_ID": {
+        "description": "Get This Value From https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get This Value From https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "A Bot's Token From Telegram @botfather",
+        "value": "",
+        "required": true
+      },
+      "MONGO_DB": {
+        "description": "Get A Mongodb URL From https://cloud.mongodb.com",
+        "value": "",
+        "required": true
+      },
+      "OWNER_ID": {
+        "description": "The User ID(s) Of USER(s) Whom You Would Like To Add As A OWNER. Multiple Values Shall Be Seperated With A Space",
+        "value": "1439222689",
+        "required": true
+      },
+      "STRING1": {
+        "description": "A Pyrogram V2 String Session",
+        "value": "",
+        "required": true
+      },
+      "STRING2": {
+        "description": "A Pyrogram V2 String Session",
+        "value": "",
+        "required": false
+      },
+      "AUTO_LEAVING_ASSISTANT": {
+        "description": "Assistant Auto Group Leaving Mode Set It `True` If You Want To Make Your Assistant Leave Group Automatically",
+        "value": "False",
+        "required": false
+      },
+      "SUPPORT_GROUP": {
+        "description": "Link Of Your Telegram Group",
+        "value": "https://t.me/Bgt_Chat",
+        "required": false
+      },
+      "GIT_TOKEN": {
+        "description": "Git Token Of Your Github Account",
+        "value": "",
+        "required": false
+      },
+      "HEROKU_API_KEY": {
+        "description": "Your Heroku Account's API Key",
+        "value": "",
+        "required": false
+      },
+      "HEROKU_APP_NAME": {
+        "description": "Your Heroku App's Name",
+        "value": "",
+        "required": false
+      },
+      "UPSTREAM_REPO": {
+        "description": "Your Github Repo's Link",
+        "value": "https://github.com/BikashHalder109/Bgt",
+        "required": true
+      },
+      "UPSTREAM_BRANCH": {
+        "description": "Your Github Repo's Branch Name",
+        "value": "bikash",
+        "required": true
+      },
+      "LOG_GROUP_ID": {
+        "description": "Your Log Group ID Add Your Bot And Promote As An Admin With Full Rights",
+        "value": "-1001606877661",
+        "required": true
+      }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "heroku/nodejs"
+          },
+          {
+              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          }
+      ],
+      "stack": "container"
+  }
