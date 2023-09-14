@@ -7,13 +7,13 @@ from Bgt.misc import db
 from Bgt.core.call import JavaCall
 from Bgt.utils.database import get_loop
 from Bgt.utils.thumbnails import gen_thumb
-from Bgt.utils.decorators import AdminActual
+from Bgt.utils.decorators import AdminRightsCheck
 from Bgt.utils.stream.autoclear import auto_clean
 from Bgt.utils.inline.play import stream_markup, telegram_markup, close_keyboard
 
 
-@app.on_message(filters.command(["skip", "cskip", "vskip"]) & filters.group & ~BANNED_USERS)
-@AdminActual
+@app.on_message(filters.command(["skip", "cskip", "vskip"]) & filters.group & ~BANNED_USERS & ~filters.forwarded)
+@AdminRightsCheck
 async def skip(cli, message: Message, chat_id):
     if not len(message.command) == 1:
         loop = await get_loop(chat_id)
@@ -40,7 +40,7 @@ async def skip(cli, message: Message, chat_id):
                             if not check:
                                 try:
                                     await message.reply_text(
-                                        "sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ⏭\n│ \n└ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1} **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(message.from_user.mention, message.chat.title),
+                                        "sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1} **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(message.from_user.mention, message.chat.title),
                                         reply_markup=close_keyboard
                                     )
                                     await JavaCall.stop_stream(chat_id)
@@ -65,7 +65,7 @@ async def skip(cli, message: Message, chat_id):
                     await auto_clean(popped)
             if not check:
                 await message.reply_text(
-                    "sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ⏭\n│ \n└ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1} **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(message.from_user.mention, message.chat.title),
+                    "sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1} **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(message.from_user.mention, message.chat.title),
                     reply_markup=close_keyboard
                 )
                 try:
@@ -75,7 +75,7 @@ async def skip(cli, message: Message, chat_id):
         except:
             try:
                 await message.reply_text(
-                    "sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ⏭\n│ \n└ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1} **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(message.from_user.mention, message.chat.title),
+                    "sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1} **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(message.from_user.mention, message.chat.title),
                     reply_markup=close_keyboard
                 )
                 return await JavaCall.stop_stream(chat_id)
