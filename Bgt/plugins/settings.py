@@ -8,16 +8,12 @@ from Bgt.utils.database import (add_nonadmin_chat, cleanmode_off, cleanmode_on, 
             is_nonadmin_chat, remove_nonadmin_chat, save_audio_bitrate, save_video_bitrate, set_playmode, set_playtype)
 from Bgt.utils.inline.settings import (audio_quality_markup, playmode_users_markup,
                      setting_markup, video_quality_markup, cleanmode_settings_markup)
-from Bgt.utils.decorators import ActualAdminCB
+from Bgt.utils.decorators import ActualAdminCB, AdminRightsCheck
 
-
-__MODULE__ = "Sᴇᴛᴛɪɴɢ"
-__HELP__ = """
-⊱ /setting - ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘ ᴀɴᴅ ᴛʜɪs ɪs ᴜsᴇᴅ ᴛᴏ sᴇᴛ ғᴇᴀᴛᴜʀᴇs ᴡʜɪᴄʜ ᴡɪʟʟ ᴡᴏʀᴋ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ
-"""
 
 
 @app.on_message(filters.command(["settings", "setting"]) & filters.group & ~BANNED_USERS)
+@AdminRightsCheck
 async def settings_mar(client, message: Message):
     try:
         await message.delete()
