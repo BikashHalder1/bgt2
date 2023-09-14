@@ -1,4 +1,5 @@
 import asyncio
+from config import adminlist, EXTRA_IMG
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import ChatAdminRequired, InviteRequestSent, UserAlreadyParticipant, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup
@@ -34,8 +35,9 @@ def PlayWrapper(command):
                 if "stream" in message.command:
                     return await message.reply_text("ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴍ3ᴜ8 ᴏʀ ɪɴᴅᴇx ʟɪɴᴋs")
                 buttons = botplaylist_markup()
-                return await message.reply_text(
-                    text="<b>Usᴀɢᴇ :</b> /play & /bgt [sᴏɴɢ ɴᴀᴍᴇ/ʏᴏᴜᴛᴜʙᴇ ᴜʀʟ/ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴀᴜᴅɪᴏ/ᴠɪᴅᴇᴏ ғɪʟᴇ]",
+                return await message.reply_photo(
+                    photo=EXTRA_IMG,
+                    caption="<b><u>ᴜsᴀɢᴇ :</u></b> /play & /bgt [sᴏɴɢ ɴᴀᴍᴇ/ʏᴏᴜᴛᴜʙᴇ ᴜʀʟ/ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴀᴜᴅɪᴏ/ᴠɪᴅᴇᴏ ғɪʟᴇ]",
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
                 
@@ -53,18 +55,15 @@ def PlayWrapper(command):
             channel = None
         playmode = await get_playmode(message.chat.id)
         playty = await get_playtype(message.chat.id)
-        
+    
         if playty != "Everyone":
             if message.from_user.id not in SUDOERS:
-                try:
-                    member = (await app.get_chat_member(message.chat.id, message.from_user.id)).privileges
-                except:
+                admins = adminlist.get(message.chat.id)
+                if not admins:
                     return
-                try:
-                    if not member.can_manage_video_chats:
-                        return await message.reply("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴡɪᴛʜ **ᴍᴀɴᴀɢᴇ ᴠɪᴅᴇᴏ ᴄʜᴀᴛ** ʀɪɢʜᴛs ᴛᴏ ᴘᴇʀғᴏʀᴍ ᴛʜɪs ᴀᴄᴛɪᴏɴ")
-                except AttributeError:
-                    pass
+                else:
+                    if message.from_user.id not in admins:
+                        return await message.reply_text("<b>ᴀᴅᴍɪɴs ᴏɴʟʏ ᴘʟᴀʏ</b>\nᴏɴʟʏ ᴀᴅᴍɪɴs ᴏғ ᴛʜɪs ᴄʜᴀᴛ ᴀʀᴇ ᴀʟʟᴏᴡᴇᴅ ᴛᴏ ᴘʟᴀʏ\n\nᴄʜᴀɴɢᴇ ᴘʟᴀʏ ᴍᴏᴅᴇ ᴠɪᴀ /playmode") 
                     
         if message.command[0][0] == "v":
             video = True
