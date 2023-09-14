@@ -1,5 +1,5 @@
 import asyncio
-from config import adminlist, EXTRA_IMG
+from config import adminlist, BIKASH_IMG
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import ChatAdminRequired, InviteRequestSent, UserAlreadyParticipant, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup
@@ -36,7 +36,7 @@ def PlayWrapper(command):
                     return await message.reply_text("ᴘʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴍ3ᴜ8 ᴏʀ ɪɴᴅᴇx ʟɪɴᴋs")
                 buttons = botplaylist_markup()
                 return await message.reply_photo(
-                    photo=EXTRA_IMG,
+                    photo=BIKASH_IMG,
                     caption="<b><u>ᴜsᴀɢᴇ :</u></b> /play & /bgt [sᴏɴɢ ɴᴀᴍᴇ/ʏᴏᴜᴛᴜʙᴇ ᴜʀʟ/ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴀᴜᴅɪᴏ/ᴠɪᴅᴇᴏ ғɪʟᴇ]",
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
