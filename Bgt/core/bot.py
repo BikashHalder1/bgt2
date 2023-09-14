@@ -27,10 +27,10 @@ class MusicBot(Client):
         self.id = get_me.id
         await self.get_chat_member(LOG_GROUP_ID, self.id)
         try:
-            LOGGER(__name__).info(f"MusicBot Started As Bgt")
+            LOGGER(__name__).info(f"MusicBot Started As Bgt !")
             await self.send_message(LOG_GROUP_ID, f"**» ʙᴏᴛ sᴛᴀʀᴛᴇᴅ : {self.mention}**")
         except:
-            LOGGER(__name__).error("Bot Has Failed To Access The Log Group")
+            LOGGER(__name__).error("Bot Has Failed To Access The Log Group !")
             sys.exit()
 
 
