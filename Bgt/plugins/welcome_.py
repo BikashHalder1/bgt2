@@ -1,14 +1,14 @@
 import os, random, glob
-from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 import numpy as np
 from config import LOG_GROUP_ID, BANNED_USERS
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatMemberUpdated
 from pyrogram.enums import ParseMode, ChatMemberStatus, ChatType
+from pyrogram.errors import MessageIdInvalid
 from Bgt import app
 from Bgt.utils.database import add_served_chat, blacklisted_chats, get_assistant
 from Bgt.utils.inline import start_pannel, close_keyboard
-
 
 
 def thumbnail(userimg, background, welcomemsg, userinfo):
@@ -66,33 +66,10 @@ def wel_panel():
             InlineKeyboardButton(text="➕ Aᴅᴅ Mᴇ ➕", url=f"https://t.me/{app.username}?startgroup=new")
         ],
         [
-            InlineKeyboardButton(text="Gʀᴏᴜᴘ Rᴜʟᴇs", callback_data="group_rules")
+            InlineKeyboardButton(text="Gʀᴏᴜᴘ Rᴜʟᴇs", url=f"https://t.me/{app.username}?start=rule")
         ]
     ]
     return buttons
-
-
-@app.on_callback_query(filters.regex("group_rules"))
-async def back(_, query):
-    XT = f"""
-ʀᴜʟᴇs ᴏғ ᴛʜɪs ɢʀᴏᴜᴘ :-
-
-⊱ ʀᴇsᴘᴇᴄᴛ ᴇᴀᴄʜ ᴀɴᴅ ᴇᴠᴇʀʏᴏɴᴇ 
-⊱ ɴᴏ ᴅᴍ / ᴘᴍ ᴡɪᴛʜᴏᴜᴛ ᴘᴇʀᴍɪssɪᴏɴ 
-⊱ 𝟷𝟾+ ᴄᴏɴᴛᴇɴᴛ - ᴅɪʀᴇᴄᴛ ʙᴀɴ
-⊱ ᴀɴʏ ᴘʀᴏʙʟᴇᴍ - @admins
-⊱ ᴜsᴇ ʜɪɴᴅɪ / ᴇɴɢʟɪsʜ
-⊱ ɴᴏ ᴘʀᴏᴍᴏᴛɪᴏɴ 
-⊱ ɴᴏ ᴘᴏʟɪᴛɪᴄᴀʟ ᴅɪsᴄᴜssɪᴏɴ
-⊱ ɴᴏ ʙᴏᴅʏ sʜᴀᴍɪɴɢ 
-⊱ ɪғ ʏᴏᴜ ᴀʀᴇ ᴏɴ ᴠᴄ - ᴛʜᴇɴ ʏᴏᴜ ᴀʀᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴛᴏ ᴋᴇᴇᴘ ᴄᴏɴᴛʀᴏʟ ᴏɴ ʏᴏᴜʀ ᴡᴏʀᴅs
-⊱ ғʟɪʀᴛɪɴɢ ᴏɴʟʏ ᴡɪᴛʜ ɪᴅᴇɴᴛɪғɪᴇᴅ ᴏɴᴇ
-⊱ ᴀʙᴜsɪɴɢ - ᴅɪʀᴇᴄᴛ ʙᴀɴ ( ᴡɪᴛʜᴏᴜᴛ ᴡᴀʀɴ )
-⊱ ᴅɪsʀᴇsᴘᴇᴄᴛ ᴏғ ᴀɴʏ ᴀᴅᴍɪɴ - ᴅɪʀᴇᴄᴛ ʙᴀɴ 
-⊱ ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ ᴀʙᴏᴜᴛ ʜᴇʀᴇ ʏᴏᴜ ᴄᴀɴ ᴄᴏɴᴛᴀᴄᴛ ᴀɴʏ ᴀᴅᴍɪɴ
-
-ᴛʜᴀɴᴋs ғᴏʀ ᴊᴏɪɴɪɴɢ ᴜs ✨"""
-    await query.message.edit(text=XT, reply_markup=close_keyboard)
 
 
 @app.on_message(filters.new_chat_members & ~BANNED_USERS, group=13)
@@ -134,12 +111,17 @@ async def welcome_bgt(c, message: Message):
 async def watcher(c, m: Message):
     text = m.text
     if m.chat.type == ChatType.PRIVATE:
-        if text.startswith("/start"):
-            return
-        if text:
-            await c.forward_messages(LOG_GROUP_ID, m.chat.id, m.id)
-        else:
-            return
+        try:
+            if text.startswith("/start"):
+                return
+            if text:
+                await c.forward_messages(LOG_GROUP_ID, m.chat.id, m.id)
+            else:
+                return
+        except AttributeError:
+            pass
+        except MessageIdInvalid:
+            pass
     else:
         return
           
@@ -152,10 +134,7 @@ async def member_has_joined(c: app, member: ChatMemberUpdated):
         and not member.old_chat_member
         and not member.new_chat_member.user.is_bot == "true"
         and member.new_chat_member.user.status
-        not in [
-            ChatMemberStatus.BANNED,
-            ChatMemberStatus.RESTRICTED
-        ]
+        not in [ChatMemberStatus.BANNED, ChatMemberStatus.RESTRICTED]
     ):
         pass
     else:
@@ -179,9 +158,7 @@ async def member_has_joined(c: app, member: ChatMemberUpdated):
 ᴜꜱᴇʀ ɪᴅ : <code>{user.id}</code>
 ᴜꜱᴇʀɴᴀᴍᴇ : {username}
 ᴍᴇɴᴛɪᴏɴ : {user.mention}
-ᴊᴏɪɴᴇᴅ ᴀᴛ: {member.date} </b>
-
-youtube.com/@Bikashgadgetstech""",
+ᴊᴏɪɴᴇᴅ ᴀᴛ: {member.date} </b>""",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(IMGX),
         )
@@ -197,9 +174,7 @@ youtube.com/@Bikashgadgetstech""",
 ᴜꜱᴇʀ ɪᴅ : <code>{user.id}</code>
 ᴜꜱᴇʀɴᴀᴍᴇ : {username} 
 ᴍᴇɴᴛɪᴏɴ : {user.mention}
-ᴊᴏɪɴᴇᴅ ᴀᴛ: {member.date} </b>
-
-youtube.com/@Bikashgadgetstech""",
+ᴊᴏɪɴᴇᴅ ᴀᴛ: {member.date} </b>""",
         parse_mode=ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(IMGX),
     )
