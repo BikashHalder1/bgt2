@@ -5,11 +5,11 @@ from Bgt.platforms import YouTube
 from Bgt import app
 from Bgt.misc import db
 from Bgt.core.call import JavaCall
-from Bgt.utils import AdminActual, seconds_to_min
+from Bgt.utils import AdminRightsCheck, seconds_to_min
 
 
-@app.on_message(filters.command(["seek", "cseek", "seekback", "cseekback"]) & filters.group & ~BANNED_USERS)
-@AdminActual
+@app.on_message(filters.command(["seek", "cseek", "seekback", "cseekback"]) & filters.group & ~BANNED_USERS & ~filters.forwarded)
+@AdminRightsCheck
 async def seek_comm(_, message: Message, chat_id):
     if len(message.command) == 1:
         return await message.reply_text("**ᴜsᴀɢᴇ:**\n/seek ᴏʀ /seekback [Dᴜʀᴀᴛɪᴏɴ ɪɴ sᴇᴄᴏɴᴅs]")
