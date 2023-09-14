@@ -2,12 +2,12 @@ from config import BANNED_USERS
 from pyrogram import filters
 from pyrogram.types import Message
 from Bgt import app
-from Bgt.utils.decorators import AdminActual
+from Bgt.utils.decorators import AdminRightsCheck
 from Bgt.utils.database import set_loop
 
 
 @app.on_message(filters.command(["loop", "cloop"]) & filters.group & ~BANNED_USERS)
-@AdminActual
+@AdminRightsCheck
 async def admins(_, message: Message, chat_id):
     if len(message.command) != 2:
         return await message.reply_text("**ᴜsᴀɢᴇ:**\n/loop [ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ] or [ɴᴜᴍʙᴇʀ ʙᴇᴛᴡᴇᴇɴ 1-10]\n\n**ᴇxᴀᴍᴘʟᴇ:** /loop 5")
