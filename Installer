@@ -21,6 +21,7 @@ pykeyboard==0.1.5
 pymongo==4.4.1
 pyrogram==2.0.106
 python-dotenv==1.0.0
+python-telegram-bot==13.15
 pyyaml==6.0.1
 requests==2.31.0
 speedtest-cli==2.1.3
