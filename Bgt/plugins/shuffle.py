@@ -4,11 +4,11 @@ from pyrogram.types import Message
 from config import BANNED_USERS
 from Bgt import app
 from Bgt.misc import db
-from Bgt.utils.decorators import AdminActual
+from Bgt.utils.decorators import AdminRightsCheck
 
 
 @app.on_message(filters.command(["shuffle", "cshuffle"]) & filters.group & ~BANNED_USERS)
-@AdminActual
+@AdminRightsCheck
 async def admins(Client, message: Message, chat_id):
     if not len(message.command) == 1:
         return await message.reply_text("ᴇʀʀᴏʀ ! ᴡʀᴏɴɢ ᴜsᴀɢᴇ ᴏғ ᴄᴏᴍᴍᴀɴᴅ")
