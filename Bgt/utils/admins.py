@@ -43,12 +43,8 @@ async def admin_cache_func(_, cmu: ChatMemberUpdated):
                     )
                 ],
             }   
-    except AttributeError:
-        pass
-    except ChatAdminRequired:
-        print("ERROR : Chat Admin Required !")
-    except Exception as e:
-        print(f"ERROR : {e}")
+    except:
+        return
 
 
 async def member_permissions(chat_id: int, user_id: int):
