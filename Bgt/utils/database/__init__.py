@@ -2,7 +2,7 @@ from .active_db import add_active_chat, is_active_chat, get_active_chats, add_ac
 from .afk_db import add_afk, is_afk, get_afk_users, remove_afk
 from .ass_db import set_assistant, set_calls_assistant, get_assistant, get_client, group_assistant
 from .aud_vid_db import get_aud_bit_name, get_audio_bitrate, get_vid_bit_name, get_video_bitrate, save_audio_bitrate, save_video_bitrate
-from .auth_db import check_nonadmin_chat, is_nonadmin_chat, add_nonadmin_chat, remove_nonadmin_chat
+from .auth_db import check_nonadmin_chat, is_nonadmin_chat, add_nonadmin_chat, remove_nonadmin_chat, get_authuser, get_authuser_names, _get_authusers, save_authuser, delete_authuser
 from .autoend_db import autoend_on, autoend_off, is_autoend
 from .bl_chats_db import blacklist_chat, blacklisted_chats, whitelist_chat
 from .block_db import get_gbanned, is_gbanned_user, add_gban_user, remove_gban_user
