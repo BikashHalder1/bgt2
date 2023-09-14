@@ -11,6 +11,7 @@ def dirr():
     for file in listdir():
         if file.endswith(".jpg"):
             remove(file)
+            
     for file in listdir():
         if file.endswith(".jpeg"):
             remove(file)
@@ -20,4 +21,4 @@ def dirr():
         
     if "cache" not in listdir():
         mkdir("cache")
-    LOGGER(__name__).info("All Folders & Plugins Loaded !")
+    
