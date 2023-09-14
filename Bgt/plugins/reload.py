@@ -1,36 +1,75 @@
 import asyncio
+import time
 from pyrogram import filters
+from pyrogram.enums import ChatMembersFilter
 from pyrogram.types import CallbackQuery, Message
+from pyrogram.errors import ChatAdminRequired
 from config import BANNED_USERS, lyrical
 from Bgt import app
 from Bgt.misc import db
 from Bgt.core.call import JavaCall
-from Bgt.utils.database import get_cmode
-from Bgt.utils.decorators import ActualAdminCB, AdminActual
+from Bgt.utils.database import get_cmode, get_authuser_names
+from Bgt.utils.decorators import ActualAdminCB, AdminRightsCheck
+from Bgt.utils.formatters import alpha_to_int, get_readable_time
+from config import BANNED_USERS, adminlist, lyrical
+
+
+rel = {}
+
+
+@app.on_message(filters.group & ~BANNED_USERS, group=17)
+async def reload_admin_cache(client, message: Message):
+    chat_id = message.chat.id
+    try:
+        if chat_id not in rel:
+            rel[chat_id] = {}
+        else:
+            saved = rel[message.chat.id]
+            if saved > time.time():
+                left = get_readable_time((int(saved) - int(time.time())))
+                return
+        adminlist[chat_id] = []
+        async for user in app.get_chat_members(chat_id, filter=ChatMembersFilter.ADMINISTRATORS):
+            try:
+                if user.privileges.can_manage_video_chats:
+                    adminlist[chat_id].append(user.user.id)
+            except AttributeError:
+                pass
+        authusers = await get_authuser_names(chat_id)
+        for user in authusers:
+            user_id = await alpha_to_int(user)
+            adminlist[chat_id].append(user_id)
+        now = int(time.time()) + 180
+        rel[chat_id] = now
+    except ChatAdminRequired:
+        print("ERROR : Chat Admin Required !")
+    except:
+        print("ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇʟᴏᴀᴅ ᴀᴅᴍɪɴ ᴄᴀᴄʜᴇ !")
 
 
 @app.on_message(filters.command(["restart", "reload"]) & filters.group & ~BANNED_USERS)
-@AdminActual
+@AdminRightsCheck
 async def restartbot(client, message: Message):
-    mystic = await message.reply_text(f"ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ ʀᴇʙᴏᴏᴛɪɴɢ {app.mention} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ.")
+    chat_id = message.chat.id
+    mystic = await message.reply_text(f"ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ ʀᴇʙᴏᴏᴛɪɴɢ {app.mention} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ !")
     await asyncio.sleep(1)
     try:
-        db[message.chat.id] = []
-        await JavaCall.stop_stream(message.chat.id)
+        db[chat_id] = []
+        await JavaCall.stop_stream(chat_id)
     except:
         pass
-    chat_id = await get_cmode(message.chat.id)
-    if chat_id:
+    chat_x = await get_cmode(chat_id)
+    if chat_x:
         try:
-            await app.get_chat(chat_id)
+            await app.get_chat(chat_x)
         except:
             pass
         try:
-            db[chat_id] = []
-            await JavaCall.stop_stream(chat_id)
+            db[chat_x] = []
+            await JavaCall.stop_stream(chat_x)
         except:
             pass
-    return await mystic.edit_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ʀᴇʙᴏᴏᴛᴇᴅ {app.mention} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ, ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ...")
+    return await mystic.edit_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ʀᴇʙᴏᴏᴛᴇᴅ {app.mention} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ !")
 
 
 @app.on_callback_query(filters.regex("close") & ~BANNED_USERS)
