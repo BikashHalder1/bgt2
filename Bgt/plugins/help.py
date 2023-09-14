@@ -4,6 +4,7 @@ from pyrogram import filters, __version__ as pyrover
 from config import BANNED_USERS, SUPPORT_HEHE, EXTRA_IMG
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
 from pyrogram.enums import ChatType
+from pyrogram.errors import MessageNotModified
 from Bgt import app, HELPABLE, __Version__
 from Bgt.utils.eqline import page_load
 from Bgt.utils.inline import private_panel, start_pannel, private_help_panel, setting_markup
@@ -19,7 +20,7 @@ async def start_testbot(_, message: Message):
     out = start_pannel()
     await message.reply_photo(
         photo=EXTRA_IMG,
-        caption=f"🖤 ᴛʜᴀɴᴋs ғᴏʀ ᴀᴅᴅɪɴɢ ᴍᴇ ɪɴ {message.chat.title}.", 
+        caption=f"ᴛʜᴀɴᴋs ғᴏʀ ᴀᴅᴅɪɴɢ ᴍᴇ ɪɴ {message.chat.title}.", 
         reply_markup=InlineKeyboardMarkup(out)
     )
     return
@@ -45,66 +46,74 @@ async def help_button(_, query: CallbackQuery):
     next_match = re.match(r"help_next\((.+?)\)", query.data)
     
     if mod_match:
-        module = mod_match.group(1)
-        text = (
-            "{} **{}** :\n".format("Hᴇʟᴘ Fᴏʀ", HELPABLE[module].__MODULE__)
-            + HELPABLE[module].__HELP__
-        )
-        key = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="back"),
-                    InlineKeyboardButton(text="ᴄʟᴏsᴇ", callback_data="close")
-                ]
-            ]
-        )
-        await query.message.edit(text=text, reply_markup=key)
-        
+        try:
+            module = mod_match.group(1)
+            text = (
+                "**{} --{}--** :\n".format("Hᴇʟᴘ Fᴏʀ", HELPABLE[module].__MODULE__)
+                + HELPABLE[module].__HELP__
+            )
+            key = InlineKeyboardMarkup([[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="back")]])
+            await query.message.edit(text=text, reply_markup=key)
+        except MessageNotModified:
+            return
     elif prev_match:
-        current_page = int(prev_match.group(1))
-        buttons = page_load(current_page - 1, HELPABLE, "help")
-        await query.message.edit(
-            f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
-        
+        try:
+            current_page = int(prev_match.group(1))
+            buttons = page_load(current_page - 1, HELPABLE, "help")
+            await query.message.edit(
+                f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
+                reply_markup=InlineKeyboardMarkup(buttons)
+            )
+        except MessageNotModified:
+            return
     elif next_match:
-        current_page = int(next_match.group(1))
-        buttons = page_load(current_page + 1, HELPABLE, "help")
-        await query.message.edit(
-            f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
+        try:
+            current_page = int(next_match.group(1))
+            buttons = page_load(current_page + 1, HELPABLE, "help")
+            await query.message.edit(
+                f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
+                reply_markup=InlineKeyboardMarkup(buttons)
+            )
+        except MessageNotModified:
+            return
 
 
 @app.on_callback_query(filters.regex("home_help"))
 async def back(_, query: CallbackQuery):
-    buttons = page_load(0, HELPABLE, "help")
-    await query.message.edit(
-        f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
-
+    try:
+        buttons = page_load(0, HELPABLE, "help")
+        await query.message.edit(
+            f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+    except MessageNotModified:
+        return
 
 @app.on_callback_query(filters.regex("back"))
 async def back(_, query: CallbackQuery):
-    buttons = page_load(0, HELPABLE, "help")
-    await query.message.edit(
-        f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
+    try:
+        buttons = page_load(0, HELPABLE, "help")
+        await query.message.edit(
+            f"ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{SUPPORT_HEHE}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`",
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+    except MessageNotModified:
+        return
     
     
 @app.on_callback_query(filters.regex("bikash"))
 async def back(_, query: CallbackQuery):
-    buttons = private_panel()
-    await query.message.edit(
-        text=f"""ʜᴇʏ {query.from_user.mention}
+    try:
+        buttons = private_panel()
+        await query.message.edit(
+            text=f"""ʜᴇʏ {query.from_user.mention}
 ᴛʜɪs ɪs {app.mention} ᴀ ᴛᴇʟᴇɢʀᴀᴍ ꜱᴛʀᴇᴀᴍɪɴɢ ʙᴏᴛ ᴡɪᴛʜ ꜱᴏᴍᴇ ᴀᴡᴇꜱᴏᴍᴇ ꜰᴇᴀᴛᴜʀᴇꜱ. ꜱᴜᴘᴘᴏʀᴛɪɴɢ ᴘʟᴀᴛꜰᴏʀᴍꜱ ʟɪᴋᴇ **ʏᴏᴜᴛᴜʙᴇ**, **ꜱᴘᴏᴛɪꜰʏ** ᴇᴛᴄ.
 
 **ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ɪɴғᴏ ᴀʙᴏᴜᴛ ᴍʏ ᴄᴏᴍᴍᴀɴᴅs.**""",
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+    except MessageNotModified:
+        return
 
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
@@ -115,4 +124,3 @@ async def help_cmd(_, m: Message):
         pass
     key = private_help_panel()
     await m.reply_text("ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ғᴏʀ ʜᴇʟᴘ !", reply_markup=InlineKeyboardMarkup(key))
-
