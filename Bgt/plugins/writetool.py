@@ -1,3 +1,4 @@
+
 import requests
 from config import BANNED_USERS
 from pyrogram import filters
@@ -30,11 +31,13 @@ async def handwrite(_, message: Message):
 **--sᴜᴄᴇssғᴜʟʟʏ ᴡʀɪᴛᴛᴇɴ ᴛᴇxᴛ :--**
 
 **ᴡʀɪᴛᴛᴇɴ ʙʏ :** {app.mention}
+
 **ʀᴇǫᴜᴇsᴛᴇᴅ ʙʏ :** {message.from_user.mention}
 """
     await m.delete()
     await message.reply_photo(photo=write, caption=caption)
-
+ 
+ 
 __MODULE__ = "WʀɪᴛᴇTᴏᴏʟ"
 __HELP__ = """
  ᴡʀɪᴛᴇs ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ ᴏɴ ᴡʜɪᴛᴇ ᴘᴀɢᴇ ᴡɪᴛʜ ᴀ ᴘᴇɴ
