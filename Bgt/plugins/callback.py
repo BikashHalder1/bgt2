@@ -26,7 +26,6 @@ async def markup_panel(client, CallbackQuery: CallbackQuery):
     chat_id = int(chat)
     if not await is_active_chat(chat_id):
         return await CallbackQuery.answer("ʙᴏᴛ ɪsɴ'ᴛ sᴛʀᴇᴀᴍɪɴɢ ᴏɴ ᴠɪᴅᴇᴏ ᴄʜᴀᴛ", show_alert=True)
-
     buttons = panel_markup_3(videoid, chat_id)
     try:
         await CallbackQuery.edit_message_reply_markup(InlineKeyboardMarkup(buttons))
@@ -73,7 +72,7 @@ async def del_back_playlist(client, CallbackQuery):
         await CallbackQuery.answer()
         await music_off(chat_id)
         await JavaCall.pause_stream(chat_id)
-        await CallbackQuery.message.reply_text("⊱ **sᴛʀᴇᴀᴍ ᴩᴀᴜsᴇᴅ** ⏸\n│ \n└ʙʏ : {} ".format(mention), reply_markup=close_keyboard)
+        await CallbackQuery.message.reply_text("⊱ **sᴛʀᴇᴀᴍ ᴩᴀᴜsᴇᴅ** ʙʏ : {} ".format(mention), reply_markup=close_keyboard)
 
     elif command == "Resume":
         if await is_music_playing(chat_id):
@@ -81,14 +80,14 @@ async def del_back_playlist(client, CallbackQuery):
         await CallbackQuery.answer()
         await music_on(chat_id)
         await JavaCall.resume_stream(chat_id)
-        await CallbackQuery.message.reply_text("⊱ **sᴛʀᴇᴀᴍ ʀᴇsᴜᴍᴇᴅ** \n│ \n└ʙʏ : {} ".format(mention), reply_markup=close_keyboard)
+        await CallbackQuery.message.reply_text("⊱ **sᴛʀᴇᴀᴍ ʀᴇsᴜᴍᴇᴅ** ʙʏ : {} ".format(mention), reply_markup=close_keyboard)
 
     elif command == "Stop" or command == "End":
         await CallbackQuery.answer()
         await JavaCall.stop_stream(chat_id)
         await set_loop(chat_id, 0)
         await CallbackQuery.message.delete()
-        await CallbackQuery.message.reply_text("⊱ **sᴛʀᴇᴀᴍ ᴇɴᴅᴇᴅ/sᴛᴏᴩᴩᴇᴅ** \n│ \n└ʙʏ : {} ".format(mention), reply_markup=close_keyboard)
+        await CallbackQuery.message.reply_text("⊱ **sᴛʀᴇᴀᴍ ᴇɴᴅᴇᴅ/sᴛᴏᴩᴩᴇᴅ** ʙʏ : {} ".format(mention), reply_markup=close_keyboard)
         try:
             popped = check.pop(0)
         except:
@@ -112,7 +111,7 @@ async def del_back_playlist(client, CallbackQuery):
                     await auto_clean(popped)
             if not check:
                 await CallbackQuery.edit_message_text("» ꜱᴛʀᴇᴀᴍ ꜱᴋɪᴘᴘᴇᴅ ʙʏ {0}".format(mention), reply_markup=close_keyboard)
-                await CallbackQuery.message.reply_text("⊱ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ⏭\n│ \n└ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1}, **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(mention, CallbackQuery.message.chat.title), reply_markup=close_keyboard)
+                await CallbackQuery.message.reply_text("⊱ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1}, **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(mention, CallbackQuery.message.chat.title), reply_markup=close_keyboard)
                 try:
                     return await JavaCall.stop_stream(chat_id)
                 except:
@@ -120,7 +119,7 @@ async def del_back_playlist(client, CallbackQuery):
         except:
             try:
                 await CallbackQuery.edit_message_text("» ꜱᴛʀᴇᴀᴍ ꜱᴋɪᴘᴘᴇᴅ ʙʏ {0}".format(mention), reply_markup=close_keyboard)
-                await CallbackQuery.message.reply_text("⊱ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ⏭\n│ \n└ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1}, **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(mention, CallbackQuery.message.chat.title), reply_markup=close_keyboard)
+                await CallbackQuery.message.reply_text("⊱ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ ʙʏ : {0} \n\n**» ɴᴏ ᴍᴏʀᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ɪɴ** {1}, **ʟᴇᴀᴠɪɴɢ ᴠɪᴅᴇᴏᴄʜᴀᴛ.**".format(mention, CallbackQuery.message.chat.title), reply_markup=close_keyboard)
                 return await JavaCall.stop_stream(chat_id)
             except:
                 return
