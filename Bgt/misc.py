@@ -39,7 +39,7 @@ XCB = [
 def dbb():
     global db
     db = db
-    LOGGER(__name__).info(f"Database Loaded")
+    LOGGER(__name__).info("Database Loaded !")
 
 
 def sudo():
@@ -63,7 +63,7 @@ def sudo():
                 SUDOERS.add(x)
     except Exception as e:
         print(e)            
-    LOGGER(__name__).info("Sudo Users Loaded Successfully")
+    LOGGER(__name__).info("Sudo Users Loaded Successfully !")
 
 
 def heroku():
@@ -73,6 +73,6 @@ def heroku():
             try:
                 Heroku = heroku3.from_key(config.HEROKU_API_KEY)
                 HAPP = Heroku.app(config.HEROKU_APP_NAME)
-                LOGGER(__name__).info("Heroku App Configured Successfully")
+                LOGGER(__name__).info("Heroku App Configured Successfully !")
             except BaseException:
-                LOGGER(__name__).warning("Please make sure your Heroku API Key and Your App name are configured correctly in the heroku")
+                LOGGER(__name__).warning("Please Make Sure Your Heroku API Key And Your App Name Are Configured Correctly In The Heroku !")
