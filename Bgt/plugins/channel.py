@@ -4,11 +4,11 @@ from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType
 from Bgt import app
 from config import BANNED_USERS
 from Bgt.utils.database import set_cmode
-from Bgt.utils.decorators import AdminActual
+from Bgt.utils.decorators import AdminRightsCheck
 
 
 @app.on_message(filters.command(["channelplay"]) & filters.group & ~BANNED_USERS)
-@AdminActual
+@AdminRightsCheck
 async def playmode_(client, message: Message):
     if len(message.command) < 2:
         return await message.reply_text("ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜsɪᴄ ɪɴ ᴄʜᴀɴɴᴇʟs ꜰʀᴏᴍ ᴛʜɪs ᴄʜᴀᴛ [{0}] ᴛᴏ ᴀɴʏ ᴄʜᴀɴɴᴇʟ ᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ's ʟɪɴᴋᴇᴅ ᴄʜᴀɴɴᴇʟ.\n\n**ꜰᴏʀ ʟɪɴᴋᴇᴅ ᴄʜᴀɴɴᴇʟ:**\n/{1} `linked`\n\n**ꜰᴏʀ ᴀɴʏ ᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ:**\n/{1} [ᴄʜᴀɴɴᴇʟ ɪᴅ]".format(message.chat.title, ["channelplay"][0]))
