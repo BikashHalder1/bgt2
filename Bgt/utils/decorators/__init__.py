@@ -1,3 +1,2 @@
-from .admins import ActualAdminCB, AdminActual
-from .filters import command
+from .admins import ActualAdminCB, AdminActual, AdminRightsCheck
 from .play import PlayWrapper
