@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from Bgt import app
 from Bgt.misc import db
 from Bgt.core.call import JavaCall
-from Bgt.utils import AdminActual
+from Bgt.utils import AdminRightsCheck
 from Bgt.utils.inline.speed import speed_markup
 from Bgt.utils.inline.play import close_keyboard
 from Bgt.utils.database import is_active_chat
@@ -22,7 +22,7 @@ checker = []
 
 
 @app.on_message(filters.command(["speed"]) & filters.group & ~BANNED_USERS)
-@AdminActual
+@AdminRightsCheck
 async def playback(cli, message: Message, chat_id):
     playing = db.get(chat_id)
     if not playing:
