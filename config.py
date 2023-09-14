@@ -109,6 +109,7 @@ EXTRA_IMG = getenv("EXTRA_IMG", "https://te.legra.ph/file/2e2741f5dfe9f62eed91d.
 
 STREAM_IMG = getenv("STREAM_IMG", "https://graph.org/file/93882ae5ea01a7bf687b1.jpg")
 
+BIKASH_IMG = getenv("BIKASH_IMG", "https://graph.org/file/d4bc06ada79821eb01025.jpg")
 
 #-------------------------------------FUNCTION---------------------------------------#
 
