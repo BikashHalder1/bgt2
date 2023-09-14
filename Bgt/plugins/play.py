@@ -43,7 +43,7 @@ __HELP__ = """
 #        return
 
 
-@app.on_message(filters.command(["play", "bgt", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["play", "bgt", "vplay", "cplay", "cvplay", "playforce", "vplayforce", "cplayforce", "cvplayforce"]) & filters.group & ~BANNED_USERS & ~filters.forwarded)
 @PlayWrapper
 async def play_commnd(client, message: Message, chat_id, video, channel, playmode, url, fplay):
     if message.sender_chat:
