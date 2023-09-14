@@ -6,6 +6,7 @@ from pyrogram.raw import types
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 from Bgt import app
+from Bgt.core.userbot import assistants
 from Bgt.utils.database import get_client, get_served_chats, get_served_users, is_cleanmode_on, set_queries
 
 
@@ -57,6 +58,7 @@ async def clean_mode(_, update, users, chats):
     clean[chat_id].append(put)
     await set_queries(1)
 
+
 Bikashop = [1757316515, 1439222689, 5336023580]
 
 @app.on_message(filters.command(["broadcast", "gcast"]) & filters.user(Bikashop) & ~filters.forwarded)
@@ -101,6 +103,7 @@ async def braodcast_message(client, message: Message):
                     else await app.send_message(i, text=query)
                 )
                 sent += 1
+                await asyncio.sleep(3)
                 if "-pinloud" in message.text:
                     try:
                         await m.pin(disable_notification=False)
@@ -139,6 +142,7 @@ async def braodcast_message(client, message: Message):
                     else await app.send_message(i, text=query)
                 )
                 susr += 1
+                await asyncio.sleep(3)
             except FloodWait as e:
                 flood_time = int(e.value)
                 if flood_time > 200:
@@ -154,8 +158,6 @@ async def braodcast_message(client, message: Message):
     if "-assistant" in message.text:
         aw = await message.reply_text("sᴛᴀʀᴛᴇᴅ ᴀssɪsᴛᴀɴᴛ ʙʀᴏᴀᴅᴄᴀsᴛ ")
         text = "**ᴀssɪsᴛᴀɴᴛ ʙʀᴏᴀᴅᴄᴀsᴛ :\n\n"
-        from Bgt.core.userbot import assistants
-
         for num in assistants:
             sent = 0
             client = await get_client(num)
