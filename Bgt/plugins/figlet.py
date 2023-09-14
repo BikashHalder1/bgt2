@@ -1,7 +1,7 @@
-from config import BANNED_USERS
-from pyrogram import filters
 import pyfiglet 
+from config import BANNED_USERS
 from random import choice
+from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from Bgt import app
 
@@ -40,8 +40,11 @@ async def echo_figlet(bot, message):
     except IndexError:
         return await message.reply_text("Example:\n\n`/figlet Bgt`")
     kul_text, keyboard = figle(text)
-    await message.reply_text(f"ʜᴇʀᴇ ɪs ʏᴏᴜʀ ғɪɢʟᴇᴛ :\n<pre>{kul_text}</pre>", quote=True, reply_markup=keyboard)
-
+    try:
+        await message.reply_text(f"ʜᴇʀᴇ ɪs ʏᴏᴜʀ ғɪɢʟᴇᴛ :\n<pre>{kul_text}</pre>", quote=True, reply_markup=keyboard)
+    except:
+        return
+    
 
 @app.on_callback_query(filters.regex("figlet"))
 async def figlet_handler(bot, query: CallbackQuery):
