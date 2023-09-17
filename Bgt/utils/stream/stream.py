@@ -10,7 +10,7 @@ from Bgt.core.call import JavaCall
 from Bgt.utils.pastebin import Javabin
 from Bgt.utils.exceptions import AssistantErr
 from Bgt.utils.thumbnails import gen_thumb
-from Bgt.utils.queue import put_queue, put_queue_index
+from Bgt.utils.stream.queue import put_queue, put_queue_index
 from Bgt.utils.database import is_active_chat, is_video_allowed
 from Bgt.utils.inline.play import close_keyboard, stream_markup, telegram_markup
 
