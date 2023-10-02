@@ -1,10 +1,10 @@
 #bikash op
 
-import os, random, glob
-import numpy as np
+
+
 from config import LOG_GROUP_ID, BANNED_USERS
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatMemberUpdated
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from pyrogram.enums import ParseMode, ChatMemberStatus, ChatType
 from pyrogram.errors import MessageIdInvalid
 from Bgt import app
