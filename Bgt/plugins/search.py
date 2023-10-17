@@ -68,10 +68,10 @@ def btn(text, value, type="callback_data"):
 
 @app.on_message(filters.command('google'))
 async def search_(bot: app, message: Message):
-    split = msg.text.split(None, 1)
+    split = message.text.split(None, 1)
     if len(split) == 1:
-        return await msg.reply_text("**ɢɪᴠᴇ ǫᴜᴇʀʏ ᴛᴏ sᴇᴀʀᴄʜ\n\n Join @BikashGadgetsTech**")
-    to_del = await msg.reply_text("**sᴇᴀʀᴄʜɪɴɢ ᴏɴ ɢᴏᴏɢʟᴇ...**")
+        return await message.reply_text("**ɢɪᴠᴇ ǫᴜᴇʀʏ ᴛᴏ sᴇᴀʀᴄʜ\n\n Join @BikashGadgetsTech**")
+    to_del = await message.reply_text("**sᴇᴀʀᴄʜɪɴɢ ᴏɴ ɢᴏᴏɢʟᴇ...**")
     query = split[1]
     try:
         result = await gsearch.async_search(query)
@@ -117,19 +117,19 @@ async def search_(bot: app, message: Message):
 
         txt = f"**ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ʀᴇsᴜʟᴛs ᴏғ ʀǫᴜᴇsᴛᴇᴅ : {query.title()} \n\n Join @BikashGadgetsTech**"
         await to_del.delete()
-        await msg.reply_text(txt, reply_markup=keyboard)
+        await message.reply_text(txt, reply_markup=keyboard)
         return
     except NoResultsFound:
         await to_del.delete()
-        await msg.reply_text("**ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴄᴏʀʀᴇsᴘᴏɴᴅɪɴɢ ᴛᴏ ʏᴏᴜʀ ǫᴜᴇʀʏ\n\n Join @BikashGadgetsTech**")
+        await message.reply_text("**ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴄᴏʀʀᴇsᴘᴏɴᴅɪɴɢ ᴛᴏ ʏᴏᴜʀ ǫᴜᴇʀʏ\n\n Join @BikashGadgetsTech**")
         return
     except NoResultsOrTrafficError:
         await to_del.delete()
-        await msg.reply_text("****ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴅᴜᴇ ᴛᴏ ᴛᴏᴏ ᴍᴀɴʏ ᴛʀᴀғғɪᴄ\n\n Join @BikashGadgetsTech**")
+        await message.reply_text("****ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴅᴜᴇ ᴛᴏ ᴛᴏᴏ ᴍᴀɴʏ ᴛʀᴀғғɪᴄ\n\n Join @BikashGadgetsTech**")
         return
     except Exception as e:
         await to_del.delete()
-        await msg.reply_text(f"**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ :\nʀᴇᴘᴏʀᴛ ᴀᴛ ɪᴛ** @Bgt_Chat")
+        await message.reply_text(f"**sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ :\nʀᴇᴘᴏʀᴛ ᴀᴛ ɪᴛ** @Bgt_Chat")
         print(f"error : {e}")
         return
 
@@ -137,10 +137,10 @@ async def search_(bot: app, message: Message):
 
 @app.on_message(filters.command('gle'))
 async def stack_search_(bot: app, message: Message):
-    split = msg.text.split(None, 1)
+    split = message.text.split(None, 1)
     if len(split) == 1:
-        return await msg.reply_text("**ɢɪᴠᴇ ǫᴜᴇʀʏ ᴛᴏ sᴇᴀʀᴄʜ\n\n Join @BikashGadgetsTech**")
-    to_del = await msg.reply_text("**sᴇᴀʀᴄʜɪɴɢ ᴏɴ ɢᴏᴏɢʟᴇ...**")
+        return await message.reply_text("**ɢɪᴠᴇ ǫᴜᴇʀʏ ᴛᴏ sᴇᴀʀᴄʜ\n\n Join @BikashGadgetsTech**")
+    to_del = await message.reply_text("**sᴇᴀʀᴄʜɪɴɢ ᴏɴ ɢᴏᴏɢʟᴇ...**")
     query = split[1]
     try:
         result = await stsearch.async_search(query)
@@ -186,15 +186,15 @@ async def stack_search_(bot: app, message: Message):
 
         txt = f"**ʜᴇʀᴇ ᴀʀᴇ ᴛʜᴇ ʀᴇsᴜʟᴛs ᴏғ ʀǫᴜᴇsᴛᴇᴅ : {query.title()} \n\n Join @BikashGadgetsTech**"
         await to_del.delete()
-        await msg.reply_text(txt, reply_markup=keyboard)
+        await message.reply_text(txt, reply_markup=keyboard)
         return
     except NoResultsFound:
         await to_del.delete()
-        await msg.reply_text("**ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴄᴏʀʀᴇsᴘᴏɴᴅɪɴɢ ᴛᴏ ʏᴏᴜʀ ǫᴜᴇʀʏ\n\n Join @BikashGadgetsTech**")
+        await message.reply_text("**ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴄᴏʀʀᴇsᴘᴏɴᴅɪɴɢ ᴛᴏ ʏᴏᴜʀ ǫᴜᴇʀʏ\n\n Join @BikashGadgetsTech**")
         return
     except NoResultsOrTrafficError:
         await to_del.delete()
-        await msg.reply_text("****ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴅᴜᴇ ᴛᴏ ᴛᴏᴏ ᴍᴀɴʏ ᴛʀᴀғғɪᴄ\n\n Join @BikashGadgetsTech**")
+        await message.reply_text("****ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ᴅᴜᴇ ᴛᴏ ᴛᴏᴏ ᴍᴀɴʏ ᴛʀᴀғғɪᴄ\n\n Join @BikashGadgetsTech**")
         return
     except Exception as e:
         await to_del.delete()
