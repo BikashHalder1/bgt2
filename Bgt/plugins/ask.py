@@ -8,9 +8,7 @@ from pyrogram import filters
 __MODULE__ = "ᴀsᴋ"
 __HELP__ = """
 ⊱ /ask : ᴀsᴋ ᴀɴʏ ǫᴜᴇsᴛɪᴏɴ 
-
 """
-
 
 @app.on_message(filters.command("ask"))
 async def ai_bot(_, message):
@@ -19,7 +17,7 @@ async def ai_bot(_, message):
       gonb = Ai(query=queri)
       await message.reply(gonb.chat())
      elif len(message.command) == 1:
-      return await message.reply("ʜᴇʟʟᴏ! ɪ'ᴍ ᴀɪ ᴀssɪsᴛᴀɴᴛ Fᴏʀ Aɴsᴡᴇʀ Aɴʏ ǫᴜᴇsᴛɪᴏɴ, ʜᴏᴡ ᴄᴀɴ ɪ ʜᴇʟᴘ ʏᴏᴜ \n\nᴊᴏɪɴ [Oᴜʀ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ](https://t.me/BikashGadgetsTech)")
+      return await message.reply("ʜᴇʟʟᴏ 🥀\nɪ'ᴍ ᴀ ᴀɪ ᴀssɪsᴛᴀɴᴛ Fᴏʀ Aɴsᴡᴇʀ Yᴏᴜʀ Aɴʏ ǫᴜᴇsᴛɪᴏɴs, ʜᴏᴡ ᴄᴀɴ ɪ ʜᴇʟᴘ ʏᴏᴜ \n\nᴊᴏɪɴ [Oᴜʀ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ](https://t.me/BikashGadgetsTech)")
      elif len(message.command) > 1:
       queri = message.text.split(None,1)[1]
      gonb = Ai(query=queri)
