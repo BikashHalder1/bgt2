@@ -5,7 +5,7 @@ from Bgt import app
 from pyrogram import filters
 
 
-__MODULE__ = "ᴀsᴋ"
+__MODULE__ = "Asᴋ"
 __HELP__ = """
 ⊱ /ask : ᴀsᴋ ᴀɴʏ ǫᴜᴇsᴛɪᴏɴ 
 """
