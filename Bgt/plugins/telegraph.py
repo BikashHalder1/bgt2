@@ -1,6 +1,6 @@
 import os
 
-from Bgt import bot
+from Bgt import app
 
 from pyrogram import *
 from pyrogram.types import *
