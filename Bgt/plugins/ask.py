@@ -5,6 +5,13 @@ from Bgt import app
 from pyrogram import filters
 
 
+__MODULE__ = "ᴀsᴋ"
+__HELP__ = """
+⊱ /ask : ᴀsᴋ ᴀɴʏ ǫᴜᴇsᴛɪᴏɴ 
+
+"""
+
+
 @app.on_message(filters.command("ask"))
 async def ai_bot(_, message):
      if message.reply_to_message:
