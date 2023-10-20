@@ -12,7 +12,7 @@ filesize = 5242880 #[5MB]
 
 
 @app.on_message(filters.command("tl"))
-async def telegraph_uploader(client, message, _):
+async def telegraph_uploader(app, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
     replied = message.reply_to_message
