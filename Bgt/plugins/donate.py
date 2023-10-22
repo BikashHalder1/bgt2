@@ -4,6 +4,11 @@ from Bgt import app
 
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
+__MODULE__ = "Dᴏɴᴀᴛᴇ"
+__HELP__ = """
+⊱ /donate : Dᴏɴᴀᴛᴇ Fᴏʀ Oᴜʀ Wᴏʀᴋ
+"""
+
 
 @app.on_message(
     filters.command("donate")
