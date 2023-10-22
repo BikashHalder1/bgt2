@@ -14,7 +14,7 @@ __HELP__ = """
 
 
 @app.on_message(
-    filters.command("owner")
+    filters.command("owner"))
 async def owner(bot: app, message: Message):
     await message.reply_photo(
         photo=f"https://te.legra.ph/file/f73af9a4ffe130a83d8d2.jpg",
@@ -42,7 +42,7 @@ async def owner(bot: app, message: Message):
     
     
 @app.on_message(
-    filters.command("bikash")
+    filters.command("bikash"))
 async def bikash(bot: app, message: Message):
     await message.reply_photo(
         photo=f"https://te.legra.ph/file/f73af9a4ffe130a83d8d2.jpg",
