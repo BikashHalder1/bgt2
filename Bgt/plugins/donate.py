@@ -11,7 +11,7 @@ __HELP__ = """
 
 
 @app.on_message(
-    filters.command("donate")
+    filters.command("donate"))
 async def donate(bot: app, message: Message):
     await message.reply_photo(
         photo=f"https://te.legra.ph/file/f73af9a4ffe130a83d8d2.jpg",
