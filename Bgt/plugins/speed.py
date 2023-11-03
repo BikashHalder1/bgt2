@@ -32,13 +32,11 @@ async def playback(cli, message: Message, _, chat_id):
         return await message.reply_text(_["admin_27"])
     upl = speed_markup(_, chat_id)
     return await message.reply_text(
-        text=_["admin_28"].format(app.mention),
-        reply_markup=upl,
+        caption="sᴘᴇᴇᴅ ᴄᴏɴᴛʀᴏʟ ᴘᴀɴᴇʟ</b></u>\n\nᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴛᴏ ᴄʜᴀɴɢᴇ ᴛʜᴇ sᴘᴇᴇᴅ ᴏғ ᴄᴜʀʀᴇɴᴛʟʏ ᴘʟᴀʏɪɴɢ sᴛʀᴇᴀᴍ ᴏɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ."  
     )
 
 
 @app.on_callback_query(filters.regex("SpeedUP") & ~BANNED_USERS)
-@languageCB
 async def del_back_playlist(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
@@ -69,30 +67,30 @@ async def del_back_playlist(client, CallbackQuery, _):
         if str(checkspeed) == str(speed):
             if str(speed) == str("1.0"):
                 return await CallbackQuery.answer(
-                    _["admin_29"],
-                    show_alert=True,
+                    "» ʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴘʟᴀʏɪɴɢ ᴏɴ ɴᴏʀᴍᴀʟ sᴘᴇᴇᴅ.",
+                      show_alert=True,
                 )
     else:
         if str(speed) == str("1.0"):
             return await CallbackQuery.answer(
-                _["admin_29"],
+                "» ʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴘʟᴀʏɪɴɢ ᴏɴ ɴᴏʀᴍᴀʟ sᴘᴇᴇᴅ.",
                 show_alert=True,
             )
     if chat_id in checker:
         return await CallbackQuery.answer(
-            _["admin_30"],
+             "» ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...\n\nsᴏᴍᴇᴏɴᴇ ᴇʟsᴇ ɪs ᴛʀʏɪɴɢ ᴛᴏ ᴄʜᴀɴɢᴇ ᴛʜᴇ sᴘᴇᴇᴅ ᴏғ ᴛʜᴇ sᴛʀᴇᴀᴍ.",
             show_alert=True,
         )
     else:
         checker.append(chat_id)
     try:
         await CallbackQuery.answer(
-            _["admin_31"],
+             "ᴄʜᴀɴɢɪɴɢ sᴘᴇᴇᴅ...",
         )
     except:
         pass
     mystic = await CallbackQuery.edit_message_text(
-        text=_["admin_32"].format(CallbackQuery.from_user.mention),
+        text="» ᴛʀʏɪɴɢ ᴛᴏ ᴄʜᴀɴɢᴇ ᴛʜᴇ sᴘᴇᴇᴅ ᴏғ ᴛʜᴇ ᴏɴɢᴏɪɴɢ sᴛʀᴇᴀᴍ...\n\n",
     )
     try:
         await JavaCall.speedup_stream(
@@ -108,6 +106,6 @@ async def del_back_playlist(client, CallbackQuery, _):
     if chat_id in checker:
         checker.remove(chat_id)
     await mystic.edit_text(
-        text=_["admin_34"].format(speed, CallbackQuery.from_user.mention),
+        text="» ᴄʜᴀɴɢᴇᴅ ᴛʜᴇ sᴘᴇᴇᴅ ᴏғ ᴛʜᴇ ᴏɴɢᴏɪɴɢ sᴛʀᴇᴀᴍ.",
         reply_markup=close_markup(_),
 )
