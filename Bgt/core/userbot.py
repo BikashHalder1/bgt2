@@ -58,7 +58,7 @@ class Userbot(Client):
             assistantids.append(get_me.id)
             LOGGER(__name__).info(f"Assistant One Started")
             try:
-                await self.one.send_message(config.LOG_GROUP_ID, f"**» ᴀssɪsᴛᴀɴᴛ ᴏɴᴇ sᴛᴀʀᴛᴇᴅ :** {self.one.mention}")
+                await self.one.send_message(config.LOG_GROUP_ID, f"**Assistant One Started :** {self.one.mention}")
             except:
                 LOGGER(__name__).error(f"Assistant Account 1 Has Failed To Access The Log Group")
                 sys.exit()
@@ -77,7 +77,7 @@ class Userbot(Client):
             assistantids.append(get_me.id)
             LOGGER(__name__).info(f"Assistant Two Started")
             try:
-                await self.two.send_message(config.LOG_GROUP_ID, f"**» ᴀssɪsᴛᴀɴᴛ ᴛᴡᴏ sᴛᴀʀᴛᴇᴅ :** {self.two.mention}")
+                await self.two.send_message(config.LOG_GROUP_ID, f"**Assistant Two Started  :** {self.two.mention}")
             except:
                 LOGGER(__name__).error(f"Assistant Account 2 Has Failed To Access The Log Group")
                 sys.exit()
@@ -96,7 +96,7 @@ class Userbot(Client):
             assistantids.append(get_me.id)
             LOGGER(__name__).info(f"Assistant three Started")
             try:
-                await self.three.send_message(config.LOG_GROUP_ID, f"**» ᴀssɪsᴛᴀɴᴛ ᴛʜʀᴇᴇ sᴛᴀʀᴛᴇᴅ :** {self.three.mention}")
+                await self.three.send_message(config.LOG_GROUP_ID, f"**Assistant Three Started  :** {self.three.mention}")
             except:
                 LOGGER(__name__).error(f"Assistant Account 3 Has Failed To Access The Log Group")
                 sys.exit()
@@ -115,7 +115,7 @@ class Userbot(Client):
             assistantids.append(get_me.id)
             LOGGER(__name__).info(f"Assistant four Started")
             try:
-                await self.four.send_message(config.LOG_GROUP_ID, f"**» ᴀssɪsᴛᴀɴᴛ ғᴏᴜʀ sᴛᴀʀᴛᴇᴅ :** {self.four.mention}")
+                await self.four.send_message(config.LOG_GROUP_ID, f"**Assistant Four Started  :** {self.four.mention}")
             except:
                 LOGGER(__name__).error(f"Assistant Account 4 Has Failed To Access The Log Group")
                 sys.exit()
@@ -134,7 +134,7 @@ class Userbot(Client):
             assistantids.append(get_me.id)
             LOGGER(__name__).info(f"Assistant five Started")
             try:
-                await self.four.send_message(config.LOG_GROUP_ID, f"**» ᴀssɪsᴛᴀɴᴛ ғɪᴠᴇ sᴛᴀʀᴛᴇᴅ :** {self.five.mention}")
+                await self.four.send_message(config.LOG_GROUP_ID, f"** Assistant Five Started :** {self.five.mention}")
             except:
                 LOGGER(__name__).error(f"Assistant Account 5 Has Failed To Access The Log Group")
                 sys.exit()                
