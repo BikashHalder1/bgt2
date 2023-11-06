@@ -1,4 +1,4 @@
-import api = SafoneAPI()
+from config import *
 
 from pyrogram import *
 from pyrogram.types import *
