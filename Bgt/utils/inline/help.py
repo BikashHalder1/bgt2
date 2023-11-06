@@ -28,3 +28,23 @@ def served_panel():
         ]
     ]
     return buttons
+
+
+# IMAGE
+def image_markup(user_id):
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text="🏞 Change Image",
+                callback_data=f"change_images",
+            ),
+        ],
+        [
+          InlineKeyboardButton(
+              text="🗑 Close",
+              callback_data=f"close",
+          ),
+        ],
+    ]
+    return buttons
+
