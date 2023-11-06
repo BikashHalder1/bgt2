@@ -1,4 +1,5 @@
 from config import *
+from Bgt import app
 
 from pyrogram import *
 from pyrogram.types import *
