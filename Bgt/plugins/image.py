@@ -93,11 +93,10 @@ async def change_imagex(client, query: CallbackQuery):
 
 
 
-__MODULE__ = "Image"
+__MODULE__ = "Iᴍᴀɢᴇ"
 __HELP__ = """
-**Get Various Types of Images**
+**Gᴇᴛ Vᴀʀɪᴏᴜs Tʏᴘᴇs ᴏғ Iᴍᴀɢᴇs **
 
-/image [image type] - Get Image
-Which You Want.
+/image [image type] - Gᴇᴛ Iᴍᴀɢᴇ Wʜɪᴄʜ Yᴏᴜ Wᴀɴᴛ.
 
 **Ex:** `/image Shree Ram"""
