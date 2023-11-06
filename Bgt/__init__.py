@@ -22,7 +22,7 @@ heroku()
 sudo()
 
 app = app
-api = api
+
 aiohttpsession = ClientSession()
 
 HELPABLE = HELPABLE
