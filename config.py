@@ -1,7 +1,6 @@
 from os import getenv, path
 from dotenv import load_dotenv
 from pyrogram import filters
-from SafoneAPI import SafoneAPI
 
 
 if path.exists("Internal"):
