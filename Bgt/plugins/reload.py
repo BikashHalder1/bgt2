@@ -43,7 +43,8 @@ async def reload_admin_cache(client, message: Message):
         rel[chat_id] = now
     except ChatAdminRequired:
         print("ERROR : Chat Admin Required !")
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         print("ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇʟᴏᴀᴅ ᴀᴅᴍɪɴ ᴄᴀᴄʜᴇ !")
 
 
