@@ -9,7 +9,6 @@ if path.exists("Internal"):
     
 #----------------------------------REQUIRED-------------------------------#
 
-api = SafoneAPI()
 
 API_ID = int(getenv("API_ID", None))
 
