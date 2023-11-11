@@ -2,6 +2,8 @@ import asyncio
 import os
 import re
 
+from Bgt.utils.pastebin import paste
+
 import aiofiles
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
