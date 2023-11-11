@@ -11,6 +11,7 @@ from pytgcalls.types import StreamAudioEnded, Update
 from pytgcalls.types import AudioQuality, VideoQuality
 from pytgcalls.types import AudioParameters, VideoParameters
 from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall, TelegramServerError
+from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 
 from Bgt.platforms import YouTube
 from Bgt import app
