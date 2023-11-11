@@ -4,6 +4,12 @@ from pyrogram.types import Message
 from Bgt import app
 from Bgt.utils.errors import capture_err
 
+__MODULE__ = "Wᴇʙss"
+__HELP__ = """
+⊱ /webss : Cʜᴇᴄᴋ Sɪᴛᴇs
+
+"""
+
 
 @app.on_message(filters.command("webss", prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
 @capture_err
