@@ -9,7 +9,7 @@ __MODULE__ = "Iᴍᴀɢᴇ"
 __HELP__ = """
 **Gᴇᴛ Vᴀʀɪᴏᴜs Tʏᴘᴇs ᴏғ Iᴍᴀɢᴇs **
 
-/image or /img [image type] - Gᴇᴛ Iᴍᴀɢᴇ Wʜɪᴄʜ Yᴏᴜ Wᴀɴᴛ.
+/image or /img  - Gᴇᴛ Iᴍᴀɢᴇ Wʜɪᴄʜ Yᴏᴜ Wᴀɴᴛ.
 
 **Ex:** `/image Shree Ram"""
 
