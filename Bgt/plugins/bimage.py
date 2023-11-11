@@ -4,7 +4,16 @@ from Bgt import app
 from pyrogram import filters
 from pyrogram.types import InputMediaPhoto
 
-@app.on_message(filters.command(["img"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
+
+__MODULE__ = "Iᴍᴀɢᴇ"
+__HELP__ = """
+**Gᴇᴛ Vᴀʀɪᴏᴜs Tʏᴘᴇs ᴏғ Iᴍᴀɢᴇs **
+
+/image or /img [image type] - Gᴇᴛ Iᴍᴀɢᴇ Wʜɪᴄʜ Yᴏᴜ Wᴀɴᴛ.
+
+**Ex:** `/image Shree Ram"""
+
+@app.on_message(filters.command(["image", "img"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
 async def pinterest(_, message):
      chat_id = message.chat.id
 
