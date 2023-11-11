@@ -2,7 +2,7 @@ import asyncio
 import os
 import re
 
-from Bgt.utils.pastebin import paste
+from Bgt.utils.pastebin import Javabin
 
 import aiofiles
 from pykeyboard import InlineKeyboard
