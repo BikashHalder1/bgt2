@@ -6,7 +6,6 @@ beautifulsoup4==4.12.2
 dnspython==2.4.2
 ffmpeg-python==0.2.0
 gitpython==3.1.32
-git+https://github.com/AsmSafone/SafoneAPI
 hachoir==3.2.0
 heroku3==5.2.1
 httpcore==0.17.3
