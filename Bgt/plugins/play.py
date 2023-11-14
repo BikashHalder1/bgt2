@@ -48,6 +48,11 @@ __HELP__ = """
 async def play_commnd(client, message: Message, chat_id, video, channel, playmode, url, fplay):
     if message.sender_chat:
         return await message.reply_text("ᴀɴᴏɴʏᴍᴏᴜs ғᴏᴜɴᴅᴇᴅ... ✨\n\nᴘʟᴇᴀsᴇ ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴀᴅᴍɪɴ")
+    is_served = await is_served_user(message.from_user.id)
+    if not is_served:
+        return await message.reply("Please Verify Your Self")
+    
+    if message.from_user.id 
     mystic = await message.reply_text("<b>⊱ ᴄʜᴀɴɴᴇʟ ᴘʟᴀʏ ᴍᴏᴅᴇ</b>\n\nᴘʀᴏᴄᴇssɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ\n\n<b>ʟɪɴᴋᴇᴅ ᴄʜᴀɴɴᴇʟ :</b> {0}".format(channel) if channel else "🔄 ᴘʀᴏᴄᴇssɪɴɢ ǫᴜᴇʀʏ")
     plist_id = None
     slider = None
