@@ -15,6 +15,7 @@ from Bgt.utils import seconds_to_min, time_to_seconds
 from Bgt import app
 from Bgt.platforms import YouTube, Spotify, Telegram
 from Bgt.utils.inline.play import livestream_markup, playlist_markup, slider_markup, track_markup
+from Bgt.utils.inline.verify import verify_pannel
 
 
 __MODULE__ = "Mᴜsɪᴄ"
@@ -50,7 +51,11 @@ async def play_commnd(client, message: Message, chat_id, video, channel, playmod
         return await message.reply_text("ᴀɴᴏɴʏᴍᴏᴜs ғᴏᴜɴᴅᴇᴅ... ✨\n\nᴘʟᴇᴀsᴇ ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴀᴅᴍɪɴ")
     is_served = await is_served_user(message.from_user.id)
     if not is_served:
-        return await message.reply("Please Verify Your Self")
+        buttons = verify_panel()
+        return await message.reply_text(
+            text="Please Verify Your Self",
+            reply_markup=InlineKeyboardMarkup(button)
+        )
     
     if message.from_user.id 
     mystic = await message.reply_text("<b>⊱ ᴄʜᴀɴɴᴇʟ ᴘʟᴀʏ ᴍᴏᴅᴇ</b>\n\nᴘʀᴏᴄᴇssɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ\n\n<b>ʟɪɴᴋᴇᴅ ᴄʜᴀɴɴᴇʟ :</b> {0}".format(channel) if channel else "🔄 ᴘʀᴏᴄᴇssɪɴɢ ǫᴜᴇʀʏ")
