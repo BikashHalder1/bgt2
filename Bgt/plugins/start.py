@@ -30,6 +30,11 @@ async def private_start(app, message : Message):
                 caption="ᴄʜᴏᴏsᴇ ᴛʜᴇ ᴄᴀᴛᴇɢᴏʀʏ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴɴᴀ ɢᴇᴛ ʜᴇʟᴩ.\nᴀsᴋ ʏᴏᴜʀ ᴅᴏᴜʙᴛs ᴀᴛ @{}\n\n๏ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴄᴀɴ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ : `/`".format(config.SUPPORT_HEHE),
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
+        if name[0:6] == "verify":
+            return await message.reply_photo(
+                photo=config.START_IMG,
+                caption="Thank You For Verify Yourself, Now Enjoy High Quality Lag Free Music & Video."
+            )
         if name[0:4] == "song":
             return await message.reply_text("**ᴜsᴀɢᴇ:**\n/song [ᴍᴜsɪᴄ ɴᴀᴍᴇ] ᴏʀ [ʏᴏᴜᴛᴜʙᴇ ʟɪɴᴋ]")
         if name[0:3] == "sta":
