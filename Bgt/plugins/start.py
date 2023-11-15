@@ -31,9 +31,13 @@ async def private_start(app, message : Message):
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
         if name[0:6] == "verify":
-            return await message.reply_photo(
+            await message.reply_photo(
                 photo=config.START_IMG,
                 caption="Thank You For Verify Yourself, Now Enjoy High Quality Lag Free Music & Video."
+            )
+            return await app.send_message(
+                config.LOG_GROUP_ID,
+                f"<b>{message.from_user.mention} Just Started Your Bot To Verify ...</b>",
             )
         if name[0:4] == "song":
             return await message.reply_text("**ᴜsᴀɢᴇ:**\n/song [ᴍᴜsɪᴄ ɴᴀᴍᴇ] ᴏʀ [ʏᴏᴜᴛᴜʙᴇ ʟɪɴᴋ]")
