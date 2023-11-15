@@ -57,7 +57,6 @@ async def play_commnd(client, message: Message, chat_id, video, channel, playmod
             reply_markup=InlineKeyboardMarkup(button)
         )
     
-    if message.from_user.id 
     mystic = await message.reply_text("<b>⊱ ᴄʜᴀɴɴᴇʟ ᴘʟᴀʏ ᴍᴏᴅᴇ</b>\n\nᴘʀᴏᴄᴇssɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ\n\n<b>ʟɪɴᴋᴇᴅ ᴄʜᴀɴɴᴇʟ :</b> {0}".format(channel) if channel else "🔄 ᴘʀᴏᴄᴇssɪɴɢ ǫᴜᴇʀʏ")
     plist_id = None
     slider = None
