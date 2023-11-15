@@ -54,7 +54,7 @@ async def play_commnd(client, message: Message, chat_id, video, channel, playmod
         buttons = verify_pannel()
         return await message.reply_text(
             text="Please Verify Your Self",
-            reply_markup=InlineKeyboardMarkup(button)
+            reply_markup=InlineKeyboardMarkup(buttons)
         )
     
     mystic = await message.reply_text("<b>⊱ ᴄʜᴀɴɴᴇʟ ᴘʟᴀʏ ᴍᴏᴅᴇ</b>\n\nᴘʀᴏᴄᴇssɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ\n\n<b>ʟɪɴᴋᴇᴅ ᴄʜᴀɴɴᴇʟ :</b> {0}".format(channel) if channel else "🔄 ᴘʀᴏᴄᴇssɪɴɢ ǫᴜᴇʀʏ")
