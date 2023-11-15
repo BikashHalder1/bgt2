@@ -51,7 +51,7 @@ async def play_commnd(client, message: Message, chat_id, video, channel, playmod
         return await message.reply_text("ᴀɴᴏɴʏᴍᴏᴜs ғᴏᴜɴᴅᴇᴅ... ✨\n\nᴘʟᴇᴀsᴇ ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴀᴅᴍɪɴ")
     is_served = await is_served_user(message.from_user.id)
     if not is_served:
-        buttons = verify_panel()
+        buttons = verify_pannel()
         return await message.reply_text(
             text="Please Verify Your Self",
             reply_markup=InlineKeyboardMarkup(button)
