@@ -19,7 +19,7 @@ async def playmode_(client, message: Message):
     if len(message.command) < 2:
         return await message.reply_text(
             "You can play music in channels from this chat[{0}] to any channel or your chat's linked channel.\n\n**For linked channel:**\n`/{1} linked`\n\n**For any other channel:**\n`/{1} [Channel ID]`".format(
-                message.chat.title, CHANNELPLAY_COMMAND[0]
+                message.chat.title, ["channelplay"][0]
             )
         )
     query = message.text.split(None, 2)[1].lower().strip()
