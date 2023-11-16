@@ -17,7 +17,7 @@ from config import BANNED_USERS, adminlist, lyrical
 rel = {}
 
 
-@app.on_message(filters.command(["rel", "rld"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["reload", "restart"]) & filters.group & ~BANNED_USERS)
 async def reload_admin_cache(client, message: Message):
     chat_id = message.chat.id
     mystic = await message.reply_text(f"ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ ʀᴇʙᴏᴏᴛɪɴɢ {app.mention} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ !")
@@ -44,7 +44,7 @@ async def reload_admin_cache(client, message: Message):
         rel[chat_id] = now
         return await mystic.edit_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ʀᴇʙᴏᴏᴛᴇᴅ {app.mention} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ sᴛᴀʀᴛ ᴩʟᴀʏɪɴɢ ᴀɢᴀɪɴ !")
     except ChatAdminRequired:
-        await mystic.edit("**ERROR : Chat Admin Required !**")
+        await mystic.edit("**You Are Not An Admin !**")
     except Exception as e:
         print(f"Error: {e}")
         await mystic.edit("ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇʟᴏᴀᴅ ᴀᴅᴍɪɴ ᴄᴀᴄʜᴇ !")
