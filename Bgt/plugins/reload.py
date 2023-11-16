@@ -48,9 +48,9 @@ async def reload_admin_cache(client, message: Message):
         print("ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇʟᴏᴀᴅ ᴀᴅᴍɪɴ ᴄᴀᴄʜᴇ !")
 
 
-@app.on_message(filters.command(["restart", "reload"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["rel", "rld"]) & filters.group & ~BANNED_USERS)
 @AdminRightsCheck
-async def restartbot(client, message: Message):
+async def restart_bot(client, message: Message):
     chat_id = message.chat.id
     mystic = await message.reply_text(f"ᴩʟᴇᴀsᴇ ᴡᴀɪᴛ ʀᴇʙᴏᴏᴛɪɴɢ {app.mention} ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ !")
     await asyncio.sleep(1)
