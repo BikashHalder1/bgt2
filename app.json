@@ -65,7 +65,7 @@
       },
       "UPSTREAM_REPO": {
         "description": "Your Github Repo's Link",
-        "value": "https://github.com/BikashHalder109/Bgt",
+        "value": "https://github.com/BikashHalder1/Bgt2",
         "required": true
       },
       "UPSTREAM_BRANCH": {
