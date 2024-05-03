@@ -8,6 +8,7 @@ from pyrogram.types import InlineKeyboardMarkup
 
 from pytgcalls import PyTgCalls
 from pytgcalls.types.raw import *
+from pytgcalls.types import Update
 from pytgcalls.exceptions import *
 from pytgcalls.types.stream import *
 
