@@ -15,7 +15,7 @@ max_message_length = 200  # Adjust the maximum length as needed
 
 
 # Event handler to delete long messages
-@app.on_message(filters.text & filters.group)
+@app.on_message(filters.text & filters.group, group=14)
 async def delete_long_messages(client, message):
     if len(message.text) > max_message_length:
         await client.delete_messages(message.chat.id, message.id)
@@ -23,14 +23,14 @@ async def delete_long_messages(client, message):
 
 
 # Delete edited messages
-@app.on_edited_message(filters.group)
+@app.on_edited_message(filters.group, group=15)
 async def delete_edited_messages(client, message):
     await client.delete_messages(message.chat.id, message.id)
     await message.reply_text(f"Hey {message.from_user.mention} Do Not Edit Any Message If You Write Wrong Then Delete And Send Again Else Delete Your Edited Message")
 
 
 # Delete messages with files
-@app.on_message(filters.document & filters.group)
+@app.on_message(filters.document & filters.group, group=16)
 async def delete_file_messages(client, message):
     await client.delete_messages(message.chat.id, message.id)
     await message.reply_text(f"Hey {message.from_user.mention} Do Not Send Any Files Else Delete")
