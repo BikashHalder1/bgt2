@@ -12,8 +12,8 @@ from pyrogram.types import InlineKeyboardMarkup
 # from pytgcalls.exceptions import *
 # from pytgcalls.types.stream import *
 
-from pytgcalls import PyTgCalls
-from pytgcalls.types import StreamAudioEnded, Update, MediaStream
+from pytgcalls import PyTgCalls, filters as fl
+from pytgcalls.types import StreamAudioEnded, Update, MediaStream, ChatUpdate
 from pytgcalls.types import AudioQuality, VideoQuality
 from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall
 from ntgcalls import TelegramServerError
