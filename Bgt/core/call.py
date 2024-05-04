@@ -573,7 +573,7 @@ class Call(PyTgCalls):
         async def stream_end_handler1(client, update: Update):
             if not isinstance(update, StreamAudioEnded):
                 return
-            await self.play(client, update.chat_id)
+            await self.change_stream(client, update.chat_id)
         
 
 JavaCall = Call()
