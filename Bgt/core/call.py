@@ -534,33 +534,24 @@ class Call(PyTgCalls):
             await self.four.start()
         if config.STRING5:
             await self.five.start()   
-            
+
+    
     async def decorators(self):
-        @self.one.on_update(fl.chat_update(
-            ChatUpdate.Status.CLOSED_VOICE_CHAT | 
-            ChatUpdate.Status.LEFT_GROUP | 
-            ChatUpdate.Status.KICKED)
-        )
-        @self.two.on_update(fl.chat_update(
-            ChatUpdate.Status.CLOSED_VOICE_CHAT | 
-            ChatUpdate.Status.LEFT_GROUP | 
-            ChatUpdate.Status.KICKED)
-        )
-        @self.three.on_update(fl.chat_update(
-            ChatUpdate.Status.CLOSED_VOICE_CHAT | 
-            ChatUpdate.Status.LEFT_GROUP | 
-            ChatUpdate.Status.KICKED)
-        )
-        @self.four.on_update(fl.chat_update(
-            ChatUpdate.Status.CLOSED_VOICE_CHAT | 
-            ChatUpdate.Status.LEFT_GROUP | 
-            ChatUpdate.Status.KICKED)
-        )
-        @self.five.on_update(fl.chat_update(
-            ChatUpdate.Status.CLOSED_VOICE_CHAT | 
-            ChatUpdate.Status.LEFT_GROUP | 
-            ChatUpdate.Status.KICKED)
-        )
+        @self.one.on_update(fl.chat_update(ChatUpdate.Status.CLOSED_VOICE_CHAT))
+        @self.two.on_update(fl.chat_update(ChatUpdate.Status.CLOSED_VOICE_CHAT))
+        @self.three.on_update(fl.chat_update(ChatUpdate.Status.CLOSED_VOICE_CHAT))
+        @self.four.on_update(fl.chat_update(ChatUpdate.Status.CLOSED_VOICE_CHAT))
+        @self.five.on_update(fl.chat_update(ChatUpdate.Status.CLOSED_VOICE_CHAT))
+        @self.one.on_update(fl.chat_update(ChatUpdate.Status.LEFT_GROUP))
+        @self.two.on_update(fl.chat_update(ChatUpdate.Status.LEFT_GROUP))
+        @self.three.on_update(fl.chat_update(ChatUpdate.Status.LEFT_GROUP))
+        @self.four.on_update(fl.chat_update(ChatUpdate.Status.LEFT_GROUP))
+        @self.five.on_update(fl.chat_update(ChatUpdate.Status.LEFT_GROUP))
+        @self.one.on_update(fl.chat_update(ChatUpdate.Status.KICKED))
+        @self.two.on_update(fl.chat_update(ChatUpdate.Status.KICKED))
+        @self.three.on_update(fl.chat_update(ChatUpdate.Status.KICKED))
+        @self.four.on_update(fl.chat_update(ChatUpdate.Status.KICKED)) 
+        @self.five.on_update(fl.chat_update(ChatUpdate.Status.KICKED))
         async def stream_services_handler(ent, chat_id: int):
             await self.stop_stream(chat_id)
         
