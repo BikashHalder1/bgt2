@@ -1,4 +1,4 @@
-from pytgcalls.types import AudioQuality
+from pytgcalls.types import AudioQuality, VideoQuality
 
 
 audio = {}
@@ -42,10 +42,10 @@ async def get_audio_bitrate(chat_id: int) -> str:
 async def get_video_bitrate(chat_id: int) -> str:
     mode = video.get(chat_id)
     if not mode:
-        return HighQualityVideo()
+        return VideoQuality.SD_480p
     if str(mode) == "High":
-        return HighQualityVideo()
+        return VideoQuality.HD_720p
     elif str(mode) == "Medium":
-        return MediumQualityVideo()
+        return VideoQuality.SD_480p
     elif str(mode) == "Low":
-        return LowQualityVideo()
+        return VideoQuality.SD_360p
