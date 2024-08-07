@@ -23,6 +23,4 @@ sudo()
 
 app = app
 
-aiohttpsession = ClientSession()
-
 HELPABLE = HELPABLE
