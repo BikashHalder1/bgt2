@@ -1,9 +1,8 @@
 from config import BANNED_USERS
 from pyrogram import filters
-from Bgt import app
+from Bgt import app, aiohttpsession
 from io import BytesIO
 
-aiohttpsession = ClientSession()
 
 __MODULE__ = "Cᴀʀʙᴏɴ"
 __HELP__ = """
