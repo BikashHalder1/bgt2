@@ -9,6 +9,8 @@ logging.basicConfig(
     handlers=[RotatingFileHandler("logs.txt", maxBytes=5000000, backupCount=10), logging.StreamHandler()])
 
 
+logging.getLogger("asyncio").setLevel(logging.ERROR)
+logging.getLogger("httpx").setLevel(logging.ERROR)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("pytgcalls").setLevel(logging.ERROR)
 
