@@ -9,7 +9,7 @@ from pykeyboard import InlineKeyboard
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton
 
-from Bgt import aiohttpsession as session
+from .carbon import aiohttpsession as session
 from Bgt import app
 from Bgt.utils.errors import capture_err
 
