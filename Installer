@@ -35,5 +35,5 @@ urllib3==2.0.4
 websockets==11.0.3
 youtube-search==2.1.2
 youtube-search-python==1.6.6
-git+https://github.com/Badmunda98/yt-dp-fork
+yt-dlp
 OpsAi
