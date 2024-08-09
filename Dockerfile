@@ -10,5 +10,7 @@ COPY . /app/
 WORKDIR /app/
 
 RUN pip3 install --no-cache-dir --upgrade --requirement Installer
+RUN python3 -m pip install -U https://github.com/coletdjnz/yt-dlp-youtube-oauth2/archive/refs/heads/master.zip
+RUN yt-dlp https://youtube.com/shorts/KNu5Kn6keyw
 
 CMD python3 -m Bgt
