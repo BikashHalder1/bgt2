@@ -26,3 +26,10 @@ app = app
 # aiohttpsession = ClientSession()
 
 HELPABLE = HELPABLE
+
+from .platforms import *
+
+YouTube = YouTubeAPI()
+Carbon = CarbonAPI()
+Spotify = SpotifyAPI()
+Telegram = TeleAPI()
