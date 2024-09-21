@@ -3,7 +3,7 @@ from config import adminlist, BIKASH_IMG
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import ChatAdminRequired, InviteRequestSent, UserAlreadyParticipant, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup
-from Bgt import app, YouTubeAPI
+from Bgt import app, YouTubeAPI as YouTube
 from Bgt.misc import SUDOERS
 from Bgt.utils.database import get_cmode, get_playmode, get_playtype, is_active_chat, get_assistant
 from Bgt.utils.inline.playlist import botplaylist_markup
@@ -27,7 +27,7 @@ def PlayWrapper(command):
             (message.reply_to_message.video or message.reply_to_message.document)
             if message.reply_to_message else None)
         
-        url = await YouTubeAPI.url(message)
+        url = await YouTube.url(message)
         
         if audio_telegram is None and video_telegram is None and url is None:
             if len(message.command) < 2:
