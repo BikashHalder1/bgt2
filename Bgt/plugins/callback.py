@@ -2,7 +2,7 @@ import random
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup
 from config import AUTO_DOWNLOADS_CLEAR, BANNED_USERS, STREAM_IMG
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app
 from Bgt.core.call import JavaCall
 from Bgt.misc import db
