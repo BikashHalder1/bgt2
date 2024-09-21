@@ -6,7 +6,7 @@ from pyrogram import filters, __version__ as pyrover
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from pyrogram.enums import ParseMode
 from youtubesearchpython.__future__ import VideosSearch
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app, HELPABLE, __Version__
 from Bgt.utils.eqline import page_load
 from Bgt.plugins.playlist import del_plist_msg
