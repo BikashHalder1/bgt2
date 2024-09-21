@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 from config import BANNED_USERS, AUTO_DOWNLOADS_CLEAR, STREAM_IMG, STREAM_IMG, STREAM_IMG
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app
 from Bgt.misc import db
 from Bgt.core.call import JavaCall
