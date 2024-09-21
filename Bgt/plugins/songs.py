@@ -5,7 +5,7 @@ from pykeyboard import InlineKeyboard
 from config import BANNED_USERS, SONG_DOWNLOAD_DURATION, SONG_DOWNLOAD_DURATION_LIMIT
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaAudio, InputMediaVideo, Message
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app
 from Bgt.utils.inline.song import song_markup
 from Bgt.utils.formatters import convert_bytes
