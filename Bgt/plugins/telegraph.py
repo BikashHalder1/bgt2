@@ -11,7 +11,7 @@ telegraph = Telegraph()
 filesize = 5242880 #[5MB]
 
 
-@app.on_message(filters.command("tl"))
+@app.on_message(filters.command("tl", "tgm", "tlink"))
 async def telegraph_uploader(app, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
@@ -76,7 +76,7 @@ __MODULE__ = "T-Gʀᴀᴘʜ"
 __HELP__ = """
 **Tᴇʟᴇɢʀᴀᴘʜ Tᴇxᴛ|Mᴇᴅɪᴀ Uᴘʟᴏᴀᴅᴇʀ**
 
-/tl - ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇᴅɪᴀ ᴏʀ ᴛᴇxᴛ ᴛᴏ
+/tl or /tgm or /tlink - ʀᴇᴘʟʏ ᴛᴏ ᴀɴʏ ᴍᴇᴅɪᴀ ᴏʀ ᴛᴇxᴛ ᴛᴏ
 ᴜᴘʟᴏᴀᴅ ᴏɴ ᴛᴇʟᴇɢʀᴀᴘʜ.
 
 /tl [title] >> ᴛᴏ sᴇᴛ ᴄᴜsᴛᴏᴍ ᴛɪᴛʟᴇ
