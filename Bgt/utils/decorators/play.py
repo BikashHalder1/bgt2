@@ -4,7 +4,7 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import ChatAdminRequired, InviteRequestSent, UserAlreadyParticipant, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup
 from Bgt import app
-from Bgt.platfroms.Youtube import YouTube
+from Bgt.platforms.Youtube import YouTube
 from Bgt.misc import SUDOERS
 from Bgt.utils.database import get_cmode, get_playmode, get_playtype, is_active_chat, get_assistant
 from Bgt.utils.inline.playlist import botplaylist_markup
