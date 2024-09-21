@@ -2,7 +2,7 @@ import asyncio
 from config import BANNED_USERS, STREAM_IMG
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, InputMediaPhoto, Message
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app
 from Bgt.misc import db
 from Bgt.utils.thumbnails import gen_thumb
