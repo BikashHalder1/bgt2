@@ -3,7 +3,7 @@ import config
 from pyrogram.types import InlineKeyboardMarkup
 from typing import Union
 from random import randint
-from Bgt.platforms import YouTube, Carbon
+from Bgt.platforms import YouTubeAPI, CarbonAPI
 from Bgt import app
 from Bgt.misc import db
 from Bgt.core.call import JavaCall
