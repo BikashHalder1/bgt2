@@ -1,6 +1,6 @@
 from config import BANNED_USERS
 from pyrogram import filters
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app
 from Bgt.utils.stream.stream import stream
 from Bgt.utils.channelplay import get_channeplayCB
