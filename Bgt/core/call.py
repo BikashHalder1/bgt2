@@ -18,7 +18,7 @@ from pytgcalls.types import AudioQuality, VideoQuality
 from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall
 from ntgcalls import TelegramServerError
 
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app
 from Bgt.misc import db
 from Bgt.utils.thumbnails import gen_thumb
