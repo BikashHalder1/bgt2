@@ -3,7 +3,7 @@ from config import BANNED_USERS, SERVER_PLAYLIST_LIMIT
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from Bgt.platforms import YouTube
+from Bgt.platforms import YouTubeAPI
 from Bgt import app
 from Bgt.utils.pastebin import Javabin
 from Bgt.utils.stream.stream import stream
