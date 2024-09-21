@@ -13,7 +13,7 @@ from Bgt.utils import is_served_user, PlayWrapper, served_panel, botplaylist_mar
 from Bgt.utils.channelplay import get_channeplayCB
 from Bgt.utils import seconds_to_min, time_to_seconds
 from Bgt import app
-from Bgt.platforms import YouTube, Spotify, Telegram
+from Bgt.platforms import YouTubeAPI, SpotifyAPI, TeleAPI
 from Bgt.utils.inline.play import livestream_markup, playlist_markup, slider_markup, track_markup
 from Bgt.utils.inline.verify import verify_pannel
 
