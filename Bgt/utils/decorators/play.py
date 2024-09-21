@@ -27,7 +27,7 @@ def PlayWrapper(command):
             (message.reply_to_message.video or message.reply_to_message.document)
             if message.reply_to_message else None)
         
-        url = await YouTube.url(message)
+        url = await YouTubeAPI.url(message)
         
         if audio_telegram is None and video_telegram is None and url is None:
             if len(message.command) < 2:
