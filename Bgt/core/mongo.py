@@ -1,9 +1,14 @@
+from motor.motor_asyncio import AsyncIOMotorClient
+
 from config import MONGO_DB
-from pymongo import MongoClient
-from motor.motor_asyncio import AsyncIOMotorClient as _mongo_client_
 
+from ..logging import LOGGER
 
-_mongo_async_ = _mongo_client_(MONGO_DB)
-_mongo_sync_ = MongoClient(MONGO_DB)
-mongodb = _mongo_async_.BgtOwner
-pymongodb = _mongo_sync_.BgtOwner
+LOGGER(__name__).info("Connecting to your Mongo Database...")
+try:
+    _mongo_async_ = AsyncIOMotorClient(MONGO_DB_URI)
+    mongodb = _mongo_async_.BgtOwner
+    LOGGER(__name__).info("Connected to your Mongo Database.")
+except:
+    LOGGER(__name__).error("Failed to connect to your Mongo Database.")
+    exit()
