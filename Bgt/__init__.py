@@ -23,13 +23,6 @@ sudo()
 
 app = app
 
-# aiohttpsession = ClientSession()
+aiohttpsession = ClientSession()
 
 HELPABLE = HELPABLE
-
-from .platforms import *
-
-YouTube = YouTubeAPI()
-Carbon = CarbonAPI()
-Spotify = SpotifyAPI()
-Telegram = TeleAPI()
