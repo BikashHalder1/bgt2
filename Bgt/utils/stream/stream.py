@@ -3,14 +3,14 @@ import config
 from pyrogram.types import InlineKeyboardMarkup
 from typing import Union
 from random import randint
-from Bgt.platforms import YouTubeAPI, CarbonAPI
+from Bgt.platforms import YouTube, Carbon
 from Bgt import app
 from Bgt.misc import db
 from Bgt.core.call import JavaCall
 from Bgt.utils.pastebin import Javabin
 from Bgt.utils.exceptions import AssistantErr
 from Bgt.utils.thumbnails import gen_thumb
-from Bgt.utils.stream.queue import put_queue, put_queue_index
+from Bgt.utils.stream import put_queue, put_queue_index
 from Bgt.utils.database import is_active_chat, is_video_allowed
 from Bgt.utils.inline.play import close_keyboard, stream_markup, telegram_markup
 
