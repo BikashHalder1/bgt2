@@ -1,7 +1,6 @@
-from aiohttp import ClientSession
 from config import BANNED_USERS
 from pyrogram import filters
-from Bgt import app
+from Bgt import app, aiohttpsession
 from io import BytesIO
 
 
@@ -9,9 +8,6 @@ __MODULE__ = "Cᴀʀʙᴏɴ"
 __HELP__ = """
 ⊱ /carbon - ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴀɴᴅ ɢɪᴠᴇ ᴄᴀʀʙᴏɴ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴍᴀᴋᴇ ᴀ ᴛᴇxᴛ ɪɴᴛᴏ ᴄᴀʀʙᴏɴ
 """
-
-
-aiohttpsession = ClientSession()
 
 async def make_carbon(code):
     url = "https://carbonara.solopov.dev/api/cook"
