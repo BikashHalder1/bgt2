@@ -9,12 +9,12 @@ from ..logging import LOGGER
 TEMP_MONGODB = "mongodb+srv://shikhar:shikhar@cluster0.6xzlh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 
-if config.MONGO_DB_URI is None:
+if config.MONGO_DB is None:
     LOGGER(__name__).warning(
         "No MONGO DB URL found.. Your Bot will work on Yukki's Database"
     )
     temp_client = Client(
-        "Yukki",
+        name="Yukki",
         bot_token=config.BOT_TOKEN,
         api_id=config.API_ID,
         api_hash=config.API_HASH,
@@ -28,7 +28,7 @@ if config.MONGO_DB_URI is None:
     mongodb = _mongo_async_[username]
     pymongodb = _mongo_sync_[username]
 else:
-    _mongo_async_ = _mongo_client_(config.MONGO_DB_URI)
-    _mongo_sync_ = MongoClient(config.MONGO_DB_URI)
+    _mongo_async_ = _mongo_client_(config.MONGO_DB)
+    _mongo_sync_ = MongoClient(config.MONGO_DB)
     mongodb = _mongo_async_.Yukki
     pymongodb = _mongo_sync_.Yukki
