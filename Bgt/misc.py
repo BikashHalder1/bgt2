@@ -1,18 +1,18 @@
-import config
 import socket
+import time
+
 import heroku3
 from pyrogram import filters
-from Bgt.logging import LOGGER
-from Bgt.core.mongo import pymongodb
 
+import config
+from Bgt.core.mongo import mongodb
+
+from .logging import LOGGER
 
 SUDOERS = filters.user()
 
-
 HAPP = None
-
-
-db = {}
+_boot_ = time.time()
 
 
 def is_heroku():
@@ -32,38 +32,33 @@ XCB = [
     "https",
     str(config.HEROKU_APP_NAME),
     "HEAD",
-    "main",
+    "master",
 ]
 
 
 def dbb():
     global db
-    db = db
-    LOGGER(__name__).info("Database Loaded !")
+    db = {}
+    LOGGER(__name__).info(f"Local Database Initialized.")
 
 
-def sudo():
+async def sudo():
     global SUDOERS
-    OWNER = config.OWNER_ID
-    try:
-        sudoersdb = pymongodb.sudoers
-        sudoers = sudoersdb.find_one({"sudo": "sudo"})
-        sudoers = [] if not sudoers else sudoers["sudoers"]
-        for user_id in OWNER:
+    SUDOERS.add(config.OWNER_ID)
+    sudoersdb = mongodb.sudoers
+    sudoers = await sudoersdb.find_one({"sudo": "sudo"})
+    sudoers = [] if not sudoers else sudoers["sudoers"]
+    if config.OWNER_ID not in sudoers:
+        sudoers.append(config.OWNER_ID)
+        await sudoersdb.update_one(
+            {"sudo": "sudo"},
+            {"$set": {"sudoers": sudoers}},
+            upsert=True,
+        )
+    if sudoers:
+        for user_id in sudoers:
             SUDOERS.add(user_id)
-            if user_id not in sudoers:
-                sudoers.append(user_id)
-                sudoersdb.update_one(
-                    {"sudo": "sudo"},
-                    {"$set": {"sudoers": sudoers}},
-                    upsert=True,
-                )
-        if sudoers:
-            for x in sudoers:
-                SUDOERS.add(x)
-    except Exception as e:
-        print(e)            
-    LOGGER(__name__).info("Sudo Users Loaded Successfully !")
+    LOGGER(__name__).info(f"Sudoers Loaded.")
 
 
 def heroku():
@@ -73,6 +68,8 @@ def heroku():
             try:
                 Heroku = heroku3.from_key(config.HEROKU_API_KEY)
                 HAPP = Heroku.app(config.HEROKU_APP_NAME)
-                LOGGER(__name__).info("Heroku App Configured Successfully !")
+                LOGGER(__name__).info(f"Heroku App Configured")
             except BaseException:
-                LOGGER(__name__).warning("Please Make Sure Your Heroku API Key And Your App Name Are Configured Correctly In The Heroku !")
+                LOGGER(__name__).warning(
+                    f"Please make sure your Heroku API Key and Your App name are configured correctly in the heroku."
+                )
