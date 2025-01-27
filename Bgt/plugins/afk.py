@@ -5,12 +5,10 @@ from pyrogram.types import Message
 from Bgt import app
 from Bgt.utils import add_afk, is_afk, remove_afk, get_readable_time
 
-
 __MODULE__ = "Aғᴋ"
 __HELP__ = """
 ⊱ /afk - ᴀᴡᴀʏ ғʀᴏᴍ ᴋᴇʏʙᴏᴀʀᴅ
 """
-
 
 @app.on_message(filters.command(["afk", f"afk@{app.username}"]) & filters.group & ~BANNED_USERS)
 async def active_afk(_, message: Message):
@@ -22,6 +20,7 @@ async def active_afk(_, message: Message):
         return
     user_id = message.from_user.id
     verifier, reasondb = await is_afk(user_id)
+    
     if verifier:
         await remove_afk(user_id)
         try:
@@ -29,7 +28,7 @@ async def active_afk(_, message: Message):
             timeafk = reasondb["time"]
             data = reasondb["data"]
             reasonafk = reasondb["reason"]
-            seenago = get_readable_time((int(time.time() - timeafk)))
+            seenago = get_readable_time((int(asyncio.get_event_loop().time() - timeafk)))
             
             if afktype == "text":
                 await message.reply_text(
@@ -37,13 +36,13 @@ async def active_afk(_, message: Message):
                     disable_web_page_preview=True,
                 )
                 
-            if afktype == "text_reason":
+            elif afktype == "text_reason":
                 await message.reply_text(
                     f"**{message.from_user.first_name}** ɪs ʙᴀᴄᴋ ᴏɴʟɪɴᴇ ᴀɴᴅ ᴡᴀs ᴀᴡᴀʏ ғᴏʀ {seenago}\n\nRᴇᴀsᴏɴ: `{reasonafk}`",
                     disable_web_page_preview=True,
                 )
                 
-            if afktype == "animation":
+            elif afktype == "animation":
                 if str(reasonafk) == "None":
                     await message.reply_animation(
                         data,
@@ -55,7 +54,7 @@ async def active_afk(_, message: Message):
                         caption=f"**{message.from_user.first_name}** ɪs ʙᴀᴄᴋ ᴏɴʟɪɴᴇ ᴀɴᴅ ᴡᴀs ᴀᴡᴀʏ ғᴏʀ {seenago}\n\nRᴇᴀsᴏɴ: `{reasonafk}`",
                     )
                     
-            if afktype == "photo":
+            elif afktype == "photo":
                 if str(reasonafk) == "None":
                     await message.reply_photo(
                         photo=f"downloads/{user_id}.jpg",
@@ -73,10 +72,11 @@ async def active_afk(_, message: Message):
             )
         return
     
+    # If user is not AFK
     if len(message.command) == 1 and not message.reply_to_message:
         details = {
             "type": "text",
-            "time": time.time(),
+            "time": asyncio.get_event_loop().time(),
             "data": None,
             "reason": None,
         }
@@ -85,7 +85,7 @@ async def active_afk(_, message: Message):
         _reason = (message.text.split(None, 1)[1].strip())[:100]
         details = {
             "type": "text_reason",
-            "time": time.time(),
+            "time": asyncio.get_event_loop().time(),
             "data": None,
             "reason": _reason,
         }
@@ -94,7 +94,7 @@ async def active_afk(_, message: Message):
         _data = message.reply_to_message.animation.file_id
         details = {
             "type": "animation",
-            "time": time.time(),
+            "time": asyncio.get_event_loop().time(),
             "data": _data,
             "reason": None,
         }
@@ -104,7 +104,7 @@ async def active_afk(_, message: Message):
         _reason = (message.text.split(None, 1)[1].strip())[:100]
         details = {
             "type": "animation",
-            "time": time.time(),
+            "time": asyncio.get_event_loop().time(),
             "data": _data,
             "reason": _reason,
         }
@@ -113,7 +113,7 @@ async def active_afk(_, message: Message):
         await app.download_media(message.reply_to_message, file_name=f"{user_id}.jpg")
         details = {
             "type": "photo",
-            "time": time.time(),
+            "time": asyncio.get_event_loop().time(),
             "data": None,
             "reason": None,
         }
@@ -123,7 +123,7 @@ async def active_afk(_, message: Message):
         _reason = message.text.split(None, 1)[1].strip()
         details = {
             "type": "photo",
-            "time": time.time(),
+            "time": asyncio.get_event_loop().time(),
             "data": None,
             "reason": _reason,
         }
@@ -132,7 +132,7 @@ async def active_afk(_, message: Message):
         if message.reply_to_message.sticker.is_animated:
             details = {
                 "type": "text",
-                "time": time.time(),
+                "time": asyncio.get_event_loop().time(),
                 "data": None,
                 "reason": None,
             }
@@ -141,7 +141,7 @@ async def active_afk(_, message: Message):
             await app.download_media(message.reply_to_message, file_name=f"{user_id}.jpg")
             details = {
                 "type": "photo",
-                "time": time.time(),
+                "time": asyncio.get_event_loop().time(),
                 "data": None,
                 "reason": None,
             }
@@ -151,7 +151,7 @@ async def active_afk(_, message: Message):
         if message.reply_to_message.sticker.is_animated:
             details = {
                 "type": "text_reason",
-                "time": time.time(),
+                "time": asyncio.get_event_loop().time(),
                 "data": None,
                 "reason": _reason,
             }
@@ -159,17 +159,58 @@ async def active_afk(_, message: Message):
             await app.download_media(message.reply_to_message, file_name=f"{user_id}.jpg")
             details = {
                 "type": "photo",
-                "time": time.time(),
+                "time": asyncio.get_event_loop().time(),
                 "data": None,
                 "reason": _reason,
             }
     else:
         details = {
             "type": "text",
-            "time": time.time(),
+            "time": asyncio.get_event_loop().time(),
             "data": None,
             "reason": None,
         }
 
     await add_afk(user_id, details)
     await message.reply_text(f"{message.from_user.first_name} ɪs ɴᴏᴡ ᴀғᴋ !")
+
+
+@app.on_message(filters.text & filters.group & ~BANNED_USERS)
+async def detect_activity(_, message: Message):
+    user_id = message.from_user.id
+    verifier, reasondb = await is_afk(user_id)
+    
+    if verifier:
+        # User is currently AFK, remove them from AFK status
+        await remove_afk(user_id)
+        afktype = reasondb["type"]
+        timeafk = reasondb["time"]
+        seenago = get_readable_time((int(asyncio.get_event_loop().time() - timeafk)))
+        reasonafk = reasondb["reason"]
+        
+        if afktype == "text":
+            await message.reply_text(
+                f"**{message.from_user.first_name}** ɪs ʙᴀᴄᴋ ᴏɴʟɪɴᴇ ᴀɴᴅ ᴡᴀs ᴀᴡᴀʏ ғᴏʀ {seenago}",
+                disable_web_page_preview=True,
+            )
+        elif afktype == "text_reason":
+            await message.reply_text(
+                f"**{message.from_user.first_name}** ɪs ʙᴀᴄᴋ ᴏɴʟɪɴᴇ ᴀɴᴅ ᴡᴀs ᴀᴡᴀʏ ғᴏʀ {seenago}\n\nRᴇᴀsᴏɴ: `{reasonafk}`",
+                disable_web_page_preview=True,
+            )
+        elif afktype == "animation":
+            caption = f"**{message.from_user.first_name}** ɪs ʙᴀᴄᴋ ᴏɴʟɪɴᴇ ᴀɴᴅ ᴡᴀs ᴀᴡᴀʏ ғᴏʀ {seenago}"
+            if reasonafk != "None":
+                caption += f"\n\nRᴇᴀsᴏɴ: `{reasonafk}`"
+            await message.reply_animation(
+                reasondb["data"],
+                caption=caption
+            )
+        elif afktype == "photo":
+            caption = f"**{message.from_user.first_name}** ɪs ʙᴀᴄᴋ ᴏɴʟɪɴᴇ ᴀɴᴅ ᴡᴀs ᴀᴡᴀʏ ғᴏʀ {seenago}"
+            if reasonafk != "None":
+                caption += f"\n\nRᴇᴀsᴏɴ: `{reasonafk}`"
+            await message.reply_photo(
+                photo=f"downloads/{user_id}.jpg",
+                caption=caption
+            )
