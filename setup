@@ -6,18 +6,28 @@ update() {
   sudo apt-get update && sudo apt-get upgrade
 }
 
-pprint () {printf """$cpurple $1"""}
+pprint() {
+  printf "$cpurple$1"
+}
 
-packages() {sudo apt-get install python3-pip ffmpeg -y}
+packages() {
+  sudo apt-get install python3-pip ffmpeg -y
+}
 
-node() {curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get install nodejs -y && npm i -g npm}
+node() {
+  curl -fssL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get install nodejs -y && npm i -g npm
+}
 
-repo() {git clone https://github.com/ExoticHero/Sirion && cd Sirion}
+repo() {
+  git clone https://github.com/ExoticHero/Sirion && cd Sirion
+}
 
-installation() {pip3 install -U -r requirements.txt}
+installation() {
+  pip3 install -U -r requirements.txt
+}
 
 clear
-pprint"ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ sɪʀɪᴏɴ sᴇᴛᴜᴘ ɪɴsᴛᴀʟʟᴇʀ ! \n\n"
+pprint "ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ sɪʀɪᴏɴ sᴇᴛᴜᴘ ɪɴsᴛᴀʟʟᴇʀ ! \n\n"
 sleep 5
 
 pprint "sᴛᴀʀᴛɪɴɢ ᴜᴘᴅᴀᴛᴇ ᴀɴᴅ ɪɴsᴛᴀʟʟɪɴɢ ᴘʟᴇᴀsᴇ ᴅᴏɴᴛ ᴘʀᴇss ᴀɴʏ ᴋᴇʏ ! \n"
@@ -75,8 +85,8 @@ sleep 1
 pprint "$cgreen \n\nᴘʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ᴠᴀʀs ᴡᴀɪᴛ ᴀ ᴡʜɪʟᴇ !"
 sleep 5
 
-if [-f local.env]; then
-sudo rm local.env
+if [ -f local.env ]; then
+  sudo rm local.env
 fi
 
 echo """
@@ -92,7 +102,3 @@ OWNER_ID = $ownid
 clear
 pprint "\n\n\nʏᴏᴜʀ ᴠᴀʀs ʜᴀᴠᴇ ʙᴇᴇɴ sᴀᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ! "
 pprint "\nɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ᴘʀᴏᴄᴇᴇᴅ ʙʏ sᴛᴀʀᴛɪɴɢ ᴛʜᴇ ʙᴏᴛ ᴡɪᴛʜ ʙᴀsʜ sᴛᴀʀᴛ !"
-
-
-
-
