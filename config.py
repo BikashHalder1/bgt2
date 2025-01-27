@@ -16,7 +16,7 @@ API_HASH = getenv("API_HASH", None)
 
 BOT_TOKEN = getenv("BOT_TOKEN", None)
 
-MONGO_DB = getenv("MONGO_DB", "mongodb+srv://vivan:vivanxdata@vivan.3vk2g.mongodb.net/?retryWrites=true&w=majority&appName=vivan")
+MONGO_DB = getenv("MONGO_DB", "mongodb+srv://Bikash:Bikash@bikash.yl2nhcy.mongodb.net/?retryWrites=true&w=majority")
 
 STRING1 = getenv("STRING1", None)
 
